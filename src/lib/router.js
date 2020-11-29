@@ -7,8 +7,7 @@ import initMoviePage from '../pages/movie';
 
 const root = null;
 const useHash = true; // Defaults to: false
-const hash = '#!'; // Defaults to: '#'
-const router = new Navigo(root, useHash, hash);
+const router = new Navigo(root, useHash);
 
 const initRouter = () => {
   router

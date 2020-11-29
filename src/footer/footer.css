@@ -1,0 +1,29 @@
+html {
+    box-sizing: border-box;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+    margin: 0;
+  }
+
+.footer__main {
+    display: flex;
+    justify-content: center;
+    background-color:#F7F7F7;
+    padding: 30px 0px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #545454;
+}
+.footer__link {
+    color: #545454;
+}
+.footer__like {
+    padding: 0px 10px;
+}
