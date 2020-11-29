@@ -1,6 +1,6 @@
 import './styles/index.scss';
 
-import initRouter, { navigate } from './lib/Router';
+import initRouter from './lib/Router';
 
 const initApp = () => {
   initRouter();
