@@ -1,0 +1,208 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+///////////////////body/////////////////////////////////
+.body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  ///
+  // user-select: none;
+}
+
+.header {
+  background-color: black;
+  height: 230px;
+  background-image: url('../../src/images/logo1.png');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-color: black;
+}
+
+.header__content {
+  max-width: 880px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 35px 0;
+}
+
+.header__link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.header__logoImg {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.header__logoName {
+  font-family: 'Roboto', sans-serif;
+  font-size: 30px;
+  font-style: normal;
+  color: #ffffff;
+  font-weight: 500;
+  text-transform: capitalize;
+  padding-left: 10px;
+}
+
+.header__navList {
+  display: flex;
+  list-style: none;
+}
+
+.header__navListLink {
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  color: #ffffff;
+  font-weight: 500;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.header__navListLink:hover {
+  border-bottom: 3px solid #ff6b08;
+}
+
+.header__navList > li:first-child {
+  margin-right: 50px;
+}
+
+@media (max-width: 1024px) {
+  .header__content {
+    width: 506px;
+  }
+}
+
+@media (max-width: 767px) {
+  .header__content {
+    max-width: 272px;
+  }
+
+  .header__logoName {
+    display: none;
+  }
+
+  .header__navList > li:first-child {
+    margin-right: 15px;
+  }
+}
+
+//////////////////input///////////////////////////
+.form-search {
+  display: inline-block;
+  border-bottom: 1px solid;
+  color: #ffffff;
+  width: 336px;
+  text-align: initial;
+  position: relative;
+}
+.form-search button {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+
+  text-transform: uppercase;
+  background-color: transparent;
+}
+.form-search button::before {
+  content: url(../../src/images/search-icon.svg);
+  font-size: 22px;
+  color: #ffffff;
+}
+.form-search input {
+  all: unset;
+  width: 300px;
+  color: #ffffff;
+}
+
+//////////////////////watched////////////////////
+.search__navLibrary {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.search__navLibrary > li:first-child {
+  margin-right: 15px;
+}
+
+.search__navLibraryBtn {
+  border: none;
+  outline: none;
+  padding: 8px;
+  border-color: solid 5px #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  cursor: pointer;
+  color: white;
+  text-transform: uppercase;
+  background-color: transparent;
+  border: #ffffff 1px solid;
+}
+
+.search__navLibraryBtn:hover {
+  background-color: #ff6b08;
+}
+
+.search__libraryFilmList {
+  width: 100%;
+  list-style: none;
+  padding-top: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  color: #ff001b;
+  font-weight: 400;
+  text-align: center;
+}
+.headen {
+  opacity: 0;
+}
+
+.search__noFilmsInList {
+  width: 100%;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+  .search__navLibrary {
+    margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 767px) {
+  .form-search {
+    width: 230px;
+  }
+  .form-search input {
+    width: 195px;
+  }
+
+  .search__libraryFilmList {
+    margin-bottom: 0;
+  }
+}
