@@ -1,28 +1,26 @@
 .section__cards {
+  @include placeholder;
+  margin-bottom: 50px;
+
   & a {
     text-decoration: none;
   }
 
-  // & .container {
-  //   max-width: 882px;
-  //   margin: 0 auto;
-  // }
-
   & .text {
-    font-family: Roboto;
+    font-family: $primary-font-stack;
     font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
+    font-weight: $medium-font-size;
+    font-size: $headings-size;
     line-height: 16px;
   }
 
-  & .cards {
+  & .cards__film-wrap {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  & .card {
+  & .card__film {
     padding: 15px;
 
     & .card__img {
@@ -30,10 +28,12 @@
     }
 
     & .card__film-name {
-      color: black;
+      // color: color(primary-text);
+      color: #000000;
     }
 
     & .card__film-about {
+      // color: color(secondary);
       color: #ff6b08;
     }
   }
