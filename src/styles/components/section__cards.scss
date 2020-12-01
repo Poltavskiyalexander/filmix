@@ -20,19 +20,21 @@
 
   & .card__film {
     padding: 15px;
-
-    & .card__img {
-      border-radius: 5px;
-    }
-
-    & .card__film-name {
-      color: color(primary-text);
-      //color: #000000;
-    }
-
-    & .card__film-about {
-      color: color(secondary);
-      //color: #ff6b08;
+    width: 33.333%;
+    .card {
+      &__img {
+        border-radius: 5px;
+      }
+      &__img-film {
+        width: 100%;
+        height: auto;
+      }
+      &__film-name {
+        color: color(primary-text);
+      }
+      &__film-about {
+        color: color(secondary);
+      }
     }
   }
 }
