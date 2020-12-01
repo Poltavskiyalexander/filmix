@@ -1,5 +1,3 @@
-//функция для получения цвета из Color map
-//принимает в себя имя кары и ключ возвращает значение ключа либо null
 @function color($key) {
   @if map-has-key($colors, $key) {
     @return map-get($colors, $key);
