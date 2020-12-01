@@ -9,12 +9,18 @@ body {
 }
 
 .container {
-  max-width: 882px;
-  margin: 0 auto;
-}
-
-.container {
-  max-width: 1054px;
+  max-width: 912px;
   padding: 0 15px;
   margin: 0 auto;
+}
+@media (max-width: 1024px) {
+  .container {
+    max-width: 588px;
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    max-width: 280px;
+  }
 }
