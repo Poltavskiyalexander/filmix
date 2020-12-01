@@ -1,38 +1,20 @@
-// html {
-//   box-sizing: border-box;
-// }
-
-// *,
-// *::before,
-// *::after {
-//   box-sizing: inherit;
-// }
-
-// body {
-//   font-family: 'Roboto';
-//   color: #000000;
-// }
-.movie-card {
-  & .movie-card {
-    margin: 60px 0px;
-  }
-  & .card {
-    padding: 0px 70px;
-    display: flex;
-    justify-content: space-between;
-  }
+.choosed_movie {
+  margin: 60px 0px;
 }
 
-// .container {
-//   max-width: 1054px;
-//   padding: 0 15px;
-//   margin: 0 auto;
-// }
+.movie_card {
+  display: flex;
+  justify-content: space-between;
+}
 
 .details-image {
-  max-width: 426px;
-  height: auto;
   margin-right: 30px;
+}
+
+.details-image img {
+  height: 514px;
+  width: 426px;
+  border-radius: 5px;
 }
 
 .details-info {
@@ -109,6 +91,7 @@
   height: 44px;
   border: 1px solid #000000;
   border-radius: 5px;
+  cursor: pointer;
   font-weight: bold;
   text-transform: uppercase;
   font-size: 12px;
@@ -118,7 +101,7 @@
   margin-right: 12px;
 }
 
-button:hover {
+.button-action:hover {
   background: #ff6b01;
   color: #ffffff;
   border: none;
@@ -130,16 +113,12 @@ button:hover {
     flex-direction: row;
   }
 
-  .movie-card {
-    margin-top: 60px;
-  }
-
   .container {
     max-width: 618px;
     margin: 0 auto;
   }
 
-  .card {
+  .movie_card {
     padding: 0;
     display: flex;
     flex-direction: row;
@@ -167,26 +146,34 @@ button:hover {
 
 @media screen and (max-width: 320px) {
   .container {
-    max-width: 280px;
     padding: 0 20px;
     margin: 0;
   }
 
-  .movie-card {
+  .choosed_movie {
     margin-top: 20px;
   }
 
-  .card {
+  .movie_card {
     width: 280px;
     padding: 0;
     display: flex;
     flex-direction: column;
   }
 
+  .details-image {
+    width: 280px;
+    margin: 0 0 20px 0;
+  }
+
   .details-image img {
     width: 280px;
     height: auto;
     margin-right: 0;
+  }
+
+  .details-info__description {
+    margin: 0 0 38px 0;
   }
 
   .button-action:not(:last-child) {
