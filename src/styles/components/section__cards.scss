@@ -1,7 +1,5 @@
 .section__cards {
-  @include placeholder;
   margin-bottom: 50px;
-
   & a {
     text-decoration: none;
   }
@@ -28,13 +26,13 @@
     }
 
     & .card__film-name {
-      // color: color(primary-text);
-      color: #000000;
+      color: color(primary-text);
+      //color: #000000;
     }
 
     & .card__film-about {
-      // color: color(secondary);
-      color: #ff6b08;
+      color: color(secondary);
+      //color: #ff6b08;
     }
   }
 }

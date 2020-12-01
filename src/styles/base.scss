@@ -9,18 +9,18 @@ body {
 }
 
 .container {
-  max-width: 912px;
+  max-width: 310px;
   padding: 0 15px;
   margin: 0 auto;
 }
 @media (max-width: 1024px) {
   .container {
-    max-width: 588px;
+    max-width: 904px;
   }
 }
 
 @media (max-width: 767px) {
   .container {
-    max-width: 280px;
+    max-width: 648px;
   }
 }
