@@ -1,0 +1,40 @@
+.section__cards {
+  & a {
+    text-decoration: none;
+  }
+
+  // & .container {
+  //   max-width: 882px;
+  //   margin: 0 auto;
+  // }
+
+  & .text {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  & .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  & .card {
+    padding: 15px;
+
+    & .card__img {
+      border-radius: 5px;
+    }
+
+    & .card__film-name {
+      color: black;
+    }
+
+    & .card__film-about {
+      color: #ff6b08;
+    }
+  }
+}

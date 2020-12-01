@@ -1,0 +1,15 @@
+*,
+*::before,
+*::after {
+  list-style: none;
+}
+body {
+  font-family: 'Roboto';
+  color: #000000;
+}
+
+.container {
+  max-width: 912px;
+  padding: 0 15px;
+  margin: 0 auto;
+}

@@ -1,0 +1,24 @@
+// Colors
+$colors: (
+  primary: #ffffff,
+  secondary: #ff6b08,
+  primary-text: #000000,
+  secondary-text: #545454,
+  description-text: #8c8c8c,
+  warning-text: #ff001b,
+);
+
+// Font weight
+// @import url('https://fonts.googleapis.com/css?family=Roboto:400,500,900&display=swap');
+$primary-font-stack: 'Roboto', sans-serif;
+
+// Font weight
+$regular-font-size: 400;
+$medium-font-size: 500;
+$black-font-size: 900;
+
+// Font size
+$headings-size-big: 30px;
+$footer-size: 16px;
+$warning-size: 14px;
+$headings-size: 12px;
