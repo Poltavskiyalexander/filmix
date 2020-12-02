@@ -7,7 +7,7 @@ import medb from '../lib/ApiMEDB';
 
 const init = async () => {
   const { results } = await medb.getPopularFilms();
-  console.log(results);
+  // console.log(results);
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', templateHeader());
   duffElem.insertAdjacentHTML('beforeend', templateSectionCards(results));
@@ -33,19 +33,21 @@ const sabmitHendler = async event => {
   const textError = document.querySelector('.search__libraryFilmList');
 
   if (searchQuery !== '') {
-    const { results } = await medb.getFilmsQuery(searchQuery);
-    console.log(results);
-    // if (searchQuery === title)
-    if (results.length === 0) {
+    const data = await medb.getFilmsQuery(searchQuery);
+    console.log(data);
+    const { total_results } = data;
+    if (total_results === 0) {
+      textError.classList.remove('headen');
       console.log(
         'Search result not successful. Enter the correct movie name and',
       );
     } else {
-      results.forEach(element => {
-        if (element.title === searchQuery) {
-          console.log(element);
-        }
-      });
+      console.log(`${total_results}кол фильмов`);
+      // results.forEach(element => {
+      //   if (element.title === searchQuery) {
+      //     console.log(element);
+      //   }
+      // });
     }
     event.target.reset();
     console.log(searchQuery);
