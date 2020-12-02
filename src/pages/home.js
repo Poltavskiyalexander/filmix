@@ -6,14 +6,11 @@ import templateFooter from '../templates/hooter.hbs';
 import medb from '../lib/ApiMEDB';
 
 const init = async () => {
-  medb.getPopularFilms().then(data => {
-    const { id, poster_path } = data;
-    console.log(data);
-  });
-
+  const { results } = await medb.getPopularFilms();
+  console.log(results);
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', templateHeader());
-  duffElem.insertAdjacentHTML('beforeend', templateSectionCards());
+  duffElem.insertAdjacentHTML('beforeend', templateSectionCards(results));
   duffElem.insertAdjacentHTML('beforeend', templateSectionPagination());
   duffElem.insertAdjacentHTML('beforeend', templateFooter());
   return duffElem.innerHTML;
