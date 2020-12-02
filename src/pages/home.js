@@ -7,7 +7,7 @@ import medb from '../lib/ApiMEDB';
 
 const init = async () => {
   const { results } = await medb.getPopularFilms();
-  console.log(results);
+  // console.log(results);
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', templateHeader());
   duffElem.insertAdjacentHTML('beforeend', templateSectionCards(results));

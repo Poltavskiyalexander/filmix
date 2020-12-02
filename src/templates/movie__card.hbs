@@ -2,10 +2,12 @@
   <div class="container">
     <div class="movie_card">
       <div class="details-image">
-        <img class="movie_poster" src="https://image.tmdb.org/t/p/w220_and_h330_face/9PEH3llx95PHR6OWrmy4VqsJB41.jpg" alt="movie-poster" />
+        <img class="movie_poster" src="https://image.tmdb.org/t/p/w220_and_h330_face{{poster_path}}"
+          {{!-- https://image.tmdb.org/t/p/w220_and_h330_face/sp4zXS3x4wHyL8wm8zLioiBrxuR.jpg --}}
+          {{!-- https://image.tmdb.org/t/p/w220_and_h330_face --}} alt="poster {{title}}" />
       </div>
       <div class="details-info">
-        <p class="details-info__title">a fistful of lead</p>
+        <p class="details-info__title">{{title}}</p>
         <div class="parameters__container">
           <div class="parameters">
             <p class="parameters-title">Vote / Votes</p>
@@ -15,24 +17,21 @@
           </div>
           <div class="values">
             <span class="parameters-title__info">
-              <span class="vote">7.3</span> /
-              <span class="votes">1260</span>
+              <span class="vote">{{vote_average}}</span> /
+              <span class="votes">{{vote_count}}</span>
             </span>
-            <span class="parameters-title__info">100.2</span>
-            <span class="parameters-title__info">A FISTFUL OF LEAD</span>
-            <span class="parameters-title__info">Western</span>
+            <span class="parameters-title__info">{{popularity}}</span>
+            <span class="parameters-title__info">{{title}}</span>
+            <span class="parameters-title__info">
+              {{#each genres}}
+              {{name}}
+              {{/each}}
+            </span>
           </div>
         </div>
         <p class="details-about">about</p>
         <p class="details-info__description">
-          Four of the West’s most infamous outlaws assemble to steal a huge
-          stash of gold from the most corrupt settlement of the gold rush
-          towns. But not all goes to plan one is killed and the other three
-          escapes with bags of gold hide out in the abandoned gold mine
-          where they happen across another gang of three – who themselves
-          were planning to hit the very same bank! As tensions rise, things
-          go from bad to worse as they realise the bags of gold are filled
-          with lead... they’ve been double crossed – but by who and how?
+          {{overview}}
         </p>
         <form>
           <button class="button-action">add to watched</button>
