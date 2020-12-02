@@ -39,19 +39,19 @@
         </div>
         <div class="search__myFilmLibraryPage">
             <form class="form-search">
-                <input type="search" name="text" required placeholder="Поиск фильмов">
-                <button type="reset" for="search">
+                <input type="search" name="text" placeholder="Поиск фильмов">
+                <button class="inputBtn" type="submit" for="search">
                 </button>
             </form>
             <p class="search__libraryFilmList">
-                Search result not successful. Enter the correct movie name and
+                {{!-- Search result not successful. Enter the correct movie name and --}}
             </p>
             <ul class="search__navLibrary">
                 <li>
-                    <button class="search__navLibraryBtn">Watched</button>
+                    <button class="search__navLibraryBtn-Watched">Watched</button>
                 </li>
                 <li>
-                    <button class="search__navLibraryBtn">Queue</button>
+                    <button class="search__navLibraryBtn-Queue">Queue</button>
                 </li>
             </ul>
         </div>

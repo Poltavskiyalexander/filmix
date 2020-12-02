@@ -1,6 +1,6 @@
 import Navigo from 'navigo';
 import RenderComponent from './Component';
-import initHomePage from '../pages/home';
+import initHomePage, { addEventHandlers } from '../pages/home';
 import initLibraryQueu from '../pages/library-queu';
 import initLibraryWatched from '../pages/library-watched';
 import initMoviePage from '../pages/movie';
@@ -12,7 +12,9 @@ const router = new Navigo(root, useHash);
 const initRouter = () => {
   router
     .on('/', () => {
-      RenderComponent(initHomePage);
+      RenderComponent(initHomePage).then(() => {
+        addEventHandlers();
+      });
     })
     .on(`/library/queu`, () => {
       RenderComponent(initLibraryQueu);
@@ -22,6 +24,12 @@ const initRouter = () => {
     })
     .on(`/movie/:id`, params => {
       RenderComponent(initMoviePage, params);
+    })
+    .on(`/search`, params => {
+      console.log(params);
+      RenderComponent(initMoviePage, params).then(() => {
+        //addHomePageEventHandlers();
+      });
     })
     .resolve();
 };
