@@ -7,6 +7,7 @@ import initMoviePage from '../pages/movie';
 
 const root = null;
 const useHash = true; // Defaults to: false
+const hash = '#';
 const router = new Navigo(root, useHash);
 
 const initRouter = () => {
@@ -29,6 +30,11 @@ const initRouter = () => {
       console.log(params);
       RenderComponent(initMoviePage, params).then(() => {
         //addHomePageEventHandlers();
+      });
+    })
+    .on(`/movie/:id`, params => {
+      RenderComponent(initMoviePage, params).then(() => {
+        addHomePageEventHandlers();
       });
     })
     .resolve();
