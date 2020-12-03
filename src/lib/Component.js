@@ -5,9 +5,11 @@ const ROOT_ELEMENT = document.querySelector('body');
 const RenderComponent = async (
   renderFunction,
   params,
+  query,
   rootElement = ROOT_ELEMENT,
 ) => {
-  const template = await renderFunction(params);
+  // debugger;
+  const template = await renderFunction(params, query);
 
   rootElement.innerHTML = template;
   rootElement.addEventListener('click', linkClickHandler);

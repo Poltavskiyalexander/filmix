@@ -5,29 +5,20 @@ import templateFooter from '../templates/hooter.hbs';
 
 import medb from '../lib/ApiMEDB';
 
-const init = async () => {
+const init = async (params, query) => {
+  console.log(params);
+  console.log(`params: ${query}`);
   const { results } = await medb.getPopularFilms();
-  // console.log(results);
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', templateHeader());
   duffElem.insertAdjacentHTML('beforeend', templateSectionCards(results));
   duffElem.insertAdjacentHTML('beforeend', templateSectionPagination());
   duffElem.insertAdjacentHTML('beforeend', templateFooter());
   return duffElem.innerHTML;
-  // return medb.getPopularFilms().then(data => {
-  //   const { results } = data;
-  //   console.log(data);
-  //   const duffElem = document.createElement('div');
-  //   duffElem.insertAdjacentHTML('beforeend', templateHeader());
-  //   duffElem.insertAdjacentHTML('beforeend', templateSectionCards(results));
-  //   duffElem.insertAdjacentHTML('beforeend', templateSectionPagination());
-  //   duffElem.insertAdjacentHTML('beforeend', templateFooter());
-  //   return duffElem.innerHTML;
-  // });
 };
 export default init;
 
-const sabmitHendler = async event => {
+const submitHandler = async event => {
   event.preventDefault();
   const searchQuery = event.target.querySelector('input[name="text"]').value;
   const textError = document.querySelector('.search__libraryFilmList');
@@ -43,34 +34,39 @@ const sabmitHendler = async event => {
       );
     } else {
       console.log(`${total_results}кол фильмов`);
-      // results.forEach(element => {
-      //   if (element.title === searchQuery) {
-      //     console.log(element);
-      //   }
-      // });
+      event.target.reset();
     }
-    event.target.reset();
     console.log(searchQuery);
   }
 };
 
-const sabmitWatched = event => {
+const hideErrorHandler = event => {
+  event.preventDefault();
+  const textError = document.querySelector('.search__libraryFilmList');
+  textError.classList.add('headen');
+}
+
+const submitWatched = event => {
   console.log(event);
 };
 
-const sabmitQueue = event => {
+const submitQueue = event => {
   console.log(event);
 };
 
 export const addEventHandlers = () => {
   document
     .querySelector('.search__navLibraryBtn-Watched')
-    .addEventListener('click', sabmitWatched);
+    .addEventListener('click', submitWatched);
   document
     .querySelector('.search__navLibraryBtn-Queue')
-    .addEventListener('click', sabmitQueue);
+    .addEventListener('click', submitQueue);
 
   document
     .querySelector('.form-search')
-    .addEventListener('submit', sabmitHendler);
+    .addEventListener('submit', submitHandler);
+
+  document 
+    .querySelector('input[name="text"]')
+    .addEventListener('click', hideErrorHandler);
 };
