@@ -1,7 +1,7 @@
 import Navigo from 'navigo';
 import RenderComponent from './Component';
 import initHomePage, { addEventHandlers } from '../pages/home';
-import initLibraryQueu from '../pages/library-queu';
+import initLibraryQueu, { addEventQueuHandlers } from '../pages/library-queu';
 import initLibraryWatched from '../pages/library-watched';
 import initMoviePage from '../pages/movie';
 
@@ -24,7 +24,9 @@ const initRouter = () => {
         });
       },
       '/library/queu': () => {
-        RenderComponent(initLibraryQueu);
+        RenderComponent(initLibraryQueu).then(() => {
+          addEventQueuHandlers();
+        });
       },
     })
     .resolve();
