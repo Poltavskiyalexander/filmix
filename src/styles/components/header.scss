@@ -29,12 +29,14 @@
   background-position: center;
   text-align: center;
   background-repeat: no-repeat;
+  margin-bottom: 60px;
 
   &__content {
     @include center-space-between-flex($type: 'all');
-    max-width: 882px;
+    // max-width: 882px;
     margin: 0 auto;
-    padding: 35px 0;
+    padding-top: 50px;
+    padding-bottom: 45px;
   }
 
   &__link {
@@ -82,15 +84,15 @@
   }
 }
 
-@media (max-width: 1024px) {
-  .header__content {
-    width: 588px;
-  }
-}
+// @media (max-width: 1024px) {
+//   .header__content {
+//     width: 588px;
+//   }
+// }
 
 @media (max-width: 767px) {
-  .header__content {
-    max-width: 280px;
+  .header {
+    margin-bottom: 20px;
   }
 
   .header__logoName {
@@ -151,7 +153,7 @@
     margin-right: 15px;
   }
 
-  &__navLibraryBtn {
+  &__navLibraryBtn-Watched {
     border: none;
     outline: none;
     padding: 8px;
@@ -167,7 +169,27 @@
     height: 44px;
   }
 
-  &__navLibraryBtn:hover {
+  &__navLibraryBtn-Queue {
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-family: $primary-font-stack;
+    font-size: $headings-size;
+    font-weight: $regular-font-size;
+    cursor: pointer;
+    color: color(primary);
+    text-transform: uppercase;
+    background-color: transparent;
+    border: color(primary) 1px solid;
+    width: 136px;
+    height: 44px;
+  }
+
+  &__navLibraryBtn-Queue:hover {
+    background-color: color(secondary);
+    // border: color(primary) 1px solid;
+  }
+  &__navLibraryBtn-Watched:hover {
     background-color: color(secondary);
     // border: color(primary) 1px solid;
   }

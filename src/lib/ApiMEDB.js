@@ -9,11 +9,15 @@ export default {
     return loadData(qweryString);
   },
   getFilmsQuery(qwery, page = 1) {
-    const qweryString = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&query=${qwery}`;
+    const qweryString = `${BASE_URL}/3/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&query=${qwery}`;
     return loadData(qweryString);
   },
   getFilmsId(id) {
     const qweryString = `${BASE_URL}/3/movie/${id}?api_key=${API_KEY}&language=en-US`;
+    return loadData(qweryString);
+  },
+  getGenresList() {
+    const qweryString = `${BASE_URL}/3/genre/movie/list?api_key=${API_KEY}&language=en-US`;
     return loadData(qweryString);
   },
 };
