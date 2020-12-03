@@ -18,6 +18,17 @@ const init = async (params, query) => {
 };
 export default init;
 
+const TEST = async () => {
+  console.log('get films details test');
+  const testArr = [];
+  testArr.push(516486);
+  testArr.push(590385);
+  testArr.push(464568);
+  console.log(testArr);
+  const data = await medb.getFilmsDetails(testArr);
+  console.log(data);
+};
+
 const submitHandler = async event => {
   event.preventDefault();
   const searchQuery = event.target.querySelector('input[name="text"]').value;
@@ -44,7 +55,7 @@ const hideErrorHandler = event => {
   event.preventDefault();
   const textError = document.querySelector('.search__libraryFilmList');
   textError.classList.add('headen');
-}
+};
 
 const submitWatched = event => {
   console.log(event);
@@ -54,7 +65,25 @@ const submitQueue = event => {
   console.log(event);
 };
 
+export const linkMyLibraryHeader = () => {
+  document.querySelector('header').classList.remove('header__img-home');
+  document.querySelector('header').classList.add('header__img-watched');
+  document.querySelector('header').classList.remove('header__img-details');
+
+  document.querySelector('.search__navLibrary').classList.remove('headen');
+
+  document.querySelector('.form-search').remove();
+  document.querySelector('.search__libraryFilmList').remove();
+};
+
+export const linkDetailsHeader = () => {
+  document.querySelector('header').classList.remove('header__img-home');
+  document.querySelector('header').classList.remove('header__img-watched');
+  document.querySelector('header').classList.add('header__img-details');
+};
+
 export const addEventHandlers = () => {
+  TEST();
   document
     .querySelector('.search__navLibraryBtn-Watched')
     .addEventListener('click', submitWatched);
@@ -66,7 +95,7 @@ export const addEventHandlers = () => {
     .querySelector('.form-search')
     .addEventListener('submit', submitHandler);
 
-  document 
+  document
     .querySelector('input[name="text"]')
     .addEventListener('click', hideErrorHandler);
 };
