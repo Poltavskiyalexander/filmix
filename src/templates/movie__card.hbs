@@ -24,7 +24,7 @@
             <span class="parameters-title__info">{{title}}</span>
             <span class="parameters-title__info">
               {{#each genres}}
-              {{name}}
+              {{name}}{{#if @last}}{{else}}, {{/if}}
               {{/each}}
             </span>
           </div>
