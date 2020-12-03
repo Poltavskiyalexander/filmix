@@ -2,6 +2,7 @@ import templateHeader from '../templates/header.hbs';
 import templateSectionCards from '../templates/section__cards.hbs';
 import templateSectionPagination from '../templates/section__pagination.hbs';
 import templateFooter from '../templates/hooter.hbs';
+import pag from '../components/pagination';
 
 import medb from '../lib/ApiMEDB';
 
