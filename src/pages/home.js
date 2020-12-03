@@ -5,9 +5,26 @@ import templateFooter from '../templates/hooter.hbs';
 
 import medb from '../lib/ApiMEDB';
 
+// const refs = {
+//   cardFilmAboutRef: document.querySelector('a.card__film-about'),
+// };
+
 const init = async () => {
   const { results } = await medb.getPopularFilms();
-  // console.log(results);
+  const { genres } = await medb.getGenresList();
+  console.log(genres);
+  const newResultsArray = [...results];
+  newResultsArray.forEach(elem => {
+    elem.year = elem.release_date.slice(0, 4);
+    console.log(elem);
+    const objectArrayItems = [...elem.genre_ids];
+    objectArrayItems.forEach(id => {
+      const item = genres.find(item => item.id === id);
+      console.log(item);
+    });
+  });
+  // console.log(newResultsArray);
+
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', templateHeader());
   duffElem.insertAdjacentHTML('beforeend', templateSectionCards(results));
