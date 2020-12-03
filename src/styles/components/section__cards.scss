@@ -21,6 +21,12 @@
   & .card__film {
     padding: 15px;
     width: 33.333%;
+    @include media-query(extra-large) {
+      width: 50%;
+    }
+    @include media-query(medium) {
+      width: 100%;
+    }
     .card {
       &__img {
         border-radius: 5px;
