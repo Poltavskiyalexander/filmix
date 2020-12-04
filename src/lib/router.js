@@ -32,7 +32,8 @@ const initRouter = () => {
       },
       '/library/queu': () => {
         RenderComponent(initLibraryQueu).then(() => {
-          linkMyLibraryHeader();
+        linkMyLibraryHeader();
+          addEventQueuHandlers();
         });
       },
     })

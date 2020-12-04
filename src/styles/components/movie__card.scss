@@ -35,7 +35,7 @@
 }
 
 .parameters-title {
-  color: #8c8c8c;
+  color: color(description-text);
 }
 
 .parameters-title:not(:last-child) {
@@ -57,7 +57,7 @@
   line-height: 14px;
   width: 36px;
   border-radius: 5px;
-  background-color: #ff6b01;
+  background-color: color(secondary);
   color: #ffffff;
 }
 
@@ -65,7 +65,7 @@
   width: 36px;
   height: 16px;
   border-radius: 5px;
-  background-color: #f7f7f7;
+  background-color: color(primary);
 }
 
 .details-about {
@@ -89,7 +89,7 @@
 .button-action {
   width: 132px;
   height: 44px;
-  border: 1px solid #000000;
+  border: 1px solid color(primary-text);
   border-radius: 5px;
   cursor: pointer;
   font-weight: bold;
@@ -102,8 +102,8 @@
 }
 
 .button-action:hover {
-  background: #ff6b01;
-  color: #ffffff;
+  background: color(secondary);
+  color: color(primary);
   border: none;
 }
 
@@ -141,7 +141,6 @@
 
   .details-image {
     min-width: 426px;
-    margin-bottom: 60px;
   }
 
   .details-info {
@@ -162,7 +161,7 @@
   .button-action {
     width: 136px;
     height: 44px;
-    border: 1px solid #000000;
+    border: 1px solid color(primary-text);
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
