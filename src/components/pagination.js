@@ -1,11 +1,12 @@
 import { parse } from 'handlebars';
 import templateSectionPagination from '../templates/section__pagination.hbs';
+import paginationList from '../templates/navigation_list.hbs';
 
 //{ page, total_pages: totalPages }
 const pagegen = () => {
   const obj = {
-    page: 1,
-    total_pages: 70,
+    page: 50,
+    total_pages: 100,
   };
   const { page, total_pages: totalPages } = obj;
 
@@ -31,22 +32,30 @@ const pagegen = () => {
     if (totalPages > 1) {
       lists.insertAdjacentHTML(
         'beforeend',
-        `<li class="numpage__list"><a class="numpage__list-item" href="#">${1}</a></li>`,
+        paginationList({ page: 1, more: true }),
       );
 
       for (let i = page - 3; i <= page + 3; i++) {
-        let str = `<li class="numpage__list"><a class="numpage__list-item" href="#">${i}</a></li>`;
+        let str = paginationList({ page: i, more: true });
         if (i <= 1 || i >= totalPages) {
         } else {
           if (i === page - 3) {
             lists.insertAdjacentHTML(
               'beforeend',
-              ` <li class="numpage__list numpage__more"><a class="numpage__list-item" href="#">...</a></li>`,
+              paginationList({
+                class: 'numpage__more',
+                page: '...',
+                more: false,
+              }),
             );
           } else if (i === page + 3) {
             lists.insertAdjacentHTML(
               'beforeend',
-              ` <li class="numpage__list numpage__more"><a class="numpage__list-item" href="#">...</a></li>`,
+              paginationList({
+                class: 'numpage__more',
+                page: '...',
+                more: false,
+              }),
             );
           } else {
             lists.insertAdjacentHTML('beforeend', str);
@@ -56,7 +65,7 @@ const pagegen = () => {
 
       lists.insertAdjacentHTML(
         'beforeend',
-        `<li class="numpage__list"><a class="numpage__list-item" href="#">${totalPages}</a></li>`,
+        paginationList({ page: totalPages, more: true }),
       );
       const itemsRefs = buffElem.querySelectorAll('.numpage__list-item');
 
