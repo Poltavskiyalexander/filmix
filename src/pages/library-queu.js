@@ -7,7 +7,6 @@ import { doc } from 'prettier';
 
 const init = async () => {
   const data = await medb.getFilmsId('682377');
-  console.log(data);
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', templateHeader());
   duffElem.insertAdjacentHTML('beforeend', templateSectionMovieCard(data));
@@ -21,37 +20,64 @@ const submitWatched = event => {
   const id = event.currentTarget.dataset.name;
   localStorage.setItem('Watched ID', id);
 
-  const refs = {
-    buttonWatched: document.querySelector('action__watched'),
-    buttonQueue: document.querySelector('action_queue'),
-  };
-
-  refs.buttonWatched.classList.add('active');
-  // let getFilmWatchedId = localStorage.getItem('Watched ID');
-
-  // if (getFilmWatchedId) {
-  // } else
+  if (action__watched.classList.contains('active')) {
+    action__watched.innerHTML = 'ADD TO WATCH';
+    action__watched.classList.remove('active');
+  } else {
+    action__watched.classList.add('active');
+    action__watched.innerHTML = 'ADDED TO WATCH';
+  }
 };
 
-// ПРИМЕР
-//   if (!getItemKeyTheme) {
-//     refs.body.classList.add(Theme.LIGHT);
-//     getItemKeyTheme = Theme.LIGHT;
-//   } else {
-//     refs.body.classList.add(getItemKeyTheme);
-//   }
+// 1. проверить локал сторедж на наличие ключа
+// 2. если ключ есть - добавить класс актив
+// 3. если ключа нет - класс убрать
 
-//   if (getItemKeyTheme === Theme.DARK) {
-//     refs.switchInput.checked = true;
+// не рабочая
+// const submitQueue = event => {
+//   const id = event.currentTarget.dataset.name;
+//   ls = localStorage.setItem('Queue ID', id);
+
+//   if (localStorage.getItem('Queue ID') !== null) {
+//     document.getElementById(action__queue).classList.add('active');
 //   } else {
-//     getItemKeyTheme = false;
+//     document.getElementById(action__queue).classList.remove('active');
 //   }
 // };
 
 const submitQueue = event => {
   const id = event.currentTarget.dataset.name;
   localStorage.setItem('Queue ID', id);
+
+  if (action__queue.classList.contains('active')) {
+    action__queue.innerHTML = 'ADD TO QUEUE';
+    action__queue.classList.remove('active');
+  } else {
+    action__queue.innerHTML = 'ADDED TO QUEUE';
+    action__queue.classList.add('active');
+  }
+
+  // document.getElementById('action__queue').onclick = function () {
+  //   if (action__queue.classList.contains('active')) {
+  //     action__queue.classList.remove('active');
+  //   } else {
+  //     action__queue.classList.add('active');
+  //   }
+  // };
 };
+// рабочая, но баганая
+// const submitQueue = event => {
+//   const id = event.currentTarget.dataset.name;
+//   localStorage.setItem('Queue ID', id);
+
+//   document.getElementById('action__queue').onclick = function () {
+//     if (action__queue.classList.contains('active')) {
+//       action__queue.classList.remove('active');
+//     } else {
+//       action__queue.classList.add('active');
+//     }
+//   };
+// };
 
 export const addEventQueuHandlers = () => {
   document
