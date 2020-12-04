@@ -18,11 +18,12 @@ const initRouter = () => {
   router
     .on({
       '/': (params, query) => {
+        debugger;
         RenderComponent(initHomePage, params, query).then(() => {
           addEventHandlers();
         });
       },
-      '/:action': (params, query) => {
+      '/page/:page': (params, query) => {
         debugger;
         console.log(`params: ${params}`);
         console.log(`query: ${query}`);
@@ -32,8 +33,8 @@ const initRouter = () => {
       },
       '/library/queu': () => {
         RenderComponent(initLibraryQueu).then(() => {
-        linkMyLibraryHeader();
-          addEventQueuHandlers();
+          // linkMyLibraryHeader();
+          // addEventQueuHandlers();
         });
       },
     })
