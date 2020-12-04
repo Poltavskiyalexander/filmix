@@ -1,6 +1,10 @@
 import Navigo from 'navigo';
 import RenderComponent from './Component';
-import initHomePage, { addEventHandlers } from '../pages/home';
+import initHomePage, {
+  addEventHandlers,
+  linkMyLibraryHeader,
+  linkDetailsHeader,
+} from '../pages/home';
 import initLibraryQueu from '../pages/library-queu';
 import initLibraryWatched from '../pages/library-watched';
 import initMoviePage from '../pages/movie';
@@ -19,12 +23,17 @@ const initRouter = () => {
         });
       },
       '/:action': (params, query) => {
+        debugger;
+        console.log(`params: ${params}`);
+        console.log(`query: ${query}`);
         RenderComponent(initHomePage, params, query).then(() => {
           addEventHandlers();
         });
       },
       '/library/queu': () => {
-        RenderComponent(initLibraryQueu);
+        RenderComponent(initLibraryQueu).then(() => {
+          linkMyLibraryHeader();
+        });
       },
     })
     .resolve();

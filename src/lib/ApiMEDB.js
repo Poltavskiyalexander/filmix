@@ -12,6 +12,13 @@ export default {
     const qweryString = `${BASE_URL}/3/search/movie?api_key=${API_KEY}&language=en-US&page=${page}&query=${qwery}`;
     return loadData(qweryString);
   },
+  getFilmsDetails(arr) {
+    const getFilmsApi = this.getFilmsId(id); //.then(data)
+    debugger;
+    return arr.map(id => {
+      getFilmsApi;
+    });
+  },
   getFilmsId(id) {
     const qweryString = `${BASE_URL}/3/movie/${id}?api_key=${API_KEY}&language=en-US`;
     return loadData(qweryString);
