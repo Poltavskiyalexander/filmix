@@ -6,16 +6,42 @@ import pag from '../components/pagination';
 
 import medb from '../lib/ApiMEDB';
 
+
 const init = async (params, query) => {
   console.log(params);
   console.log(`params: ${query}`);
   const { results } = await medb.getPopularFilms();
+  const { genres } = await medb.getGenresList();
+  console.log(genres);
+  const newResultsArray = [...results];
+  newResultsArray.forEach(elem => {
+    elem.year = elem.release_date.slice(0, 4);
+    console.log(elem);
+    const objectArrayItems = [...elem.genre_ids];
+    objectArrayItems.forEach(id => {
+      const item = genres.find(item => item.id === id);
+      console.log(item);
+    });
+  });
+  // console.log(newResultsArray);
+
+>>>>>>> add_js_cards
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', templateHeader());
   duffElem.insertAdjacentHTML('beforeend', templateSectionCards(results));
   duffElem.insertAdjacentHTML('beforeend', templateSectionPagination());
   duffElem.insertAdjacentHTML('beforeend', templateFooter());
   return duffElem.innerHTML;
+  // return medb.getPopularFilms().then(data => {
+  //   const { results } = data;
+  //   console.log(data);
+  //   const duffElem = document.createElement('div');
+  //   duffElem.insertAdjacentHTML('beforeend', templateHeader());
+  //   duffElem.insertAdjacentHTML('beforeend', templateSectionCards(results));
+  //   duffElem.insertAdjacentHTML('beforeend', templateSectionPagination());
+  //   duffElem.insertAdjacentHTML('beforeend', templateFooter());
+  //   return duffElem.innerHTML;
+  // });
 };
 export default init;
 
@@ -35,6 +61,11 @@ const sabmitHendler = async event => {
       );
     } else {
       console.log(`${total_results}кол фильмов`);
+      // results.forEach(element => {
+      //   if (element.title === searchQuery) {
+      //     console.log(element);
+      //   }
+      // });
     }
     event.target.reset();
     console.log(searchQuery);
