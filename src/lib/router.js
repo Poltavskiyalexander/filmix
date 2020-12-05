@@ -1,86 +1,66 @@
 import Navigo from 'navigo';
+
 import RenderComponent from './Component';
+
 import initHomePage, {
   addEventHandlers,
   linkMyLibraryHeader,
   linkDetailsHeader,
 } from '../pages/home';
-import initLibraryQueu from '../pages/library-queu';
-import initLibraryWatched from '../pages/library-watched';
+
+import initLibrary from '../pages/library';
 import initMoviePage from '../pages/movie';
+import initSearchPage from '../pages/search';
 
 const root = null;
-const useHash = true; // Defaults to: false
-//const hash = '#';
+const useHash = true;
+const hash = '#';
 const router = new Navigo(root, useHash);
 
 const initRouter = () => {
+  // debugger;
   router
     .on({
-      '/': (params, query) => {
-        debugger;
-        RenderComponent(initHomePage, params, query).then(() => {
+      '/': () => {
+        // debugger;
+        navigate('/');
+        RenderComponent(initHomePage).then(() => {
           addEventHandlers();
         });
       },
-      '/page/:page': (params, query) => {
-        debugger;
-        console.log(`params: ${params}`);
-        console.log(`query: ${query}`);
-        RenderComponent(initHomePage, params, query).then(() => {
+      '/:action': (params, query) => {
+        // debugger;
+        if (params.action === 'home') {
+          RenderComponent(initHomePage, params, query).then(() => {
+            addEventHandlers();
+          });
+        }
+        if (params.action === 'search') {
+          RenderComponent(initSearchPage, params, query).then(() => {
+            addEventHandlers();
+          });
+        }
+      },
+      '/movie/:id': (params, query) => {
+        // debugger;
+        RenderComponent(initMoviePage, params, query).then(() => {
           addEventHandlers();
         });
       },
-      '/library/queu': () => {
-        RenderComponent(initLibraryQueu).then(() => {
-          // linkMyLibraryHeader();
-          // addEventQueuHandlers();
-        });
+      '/library/:action': (params, query) => {
+        // debugger;
+        if (params.action === 'queu' || params.action === 'watched') {
+          RenderComponent(initLibrary, params, query).then(() => {
+            addEventHandlers();
+          });
+        }
       },
     })
+    .notFound(function (query) {
+      // console.log(query);
+      // debugger;
+    })
     .resolve();
-
-  // .on({
-  //   '/': () {RenderComponent(initHomePage).then(() => {
-  //     addEventHandlers();
-  //   });
-  //   },
-  //   '/library/queu': () {
-  //     RenderComponent(initLibraryQueu)
-  //   },
-  //   '*': function () {
-  //     setContent('Home')
-  //   }
-  // })
-  // .on({
-  //     '/',
-  //     () => {
-  //       RenderComponent(initHomePage).then(() => {
-  //         addEventHandlers();
-  //       });
-  //     },
-  //     `/library/queu`,
-  //     () => {
-  //       RenderComponent(initLibraryQueu);
-  //     },
-  //   })
-  //   .on(`/library/watched`, () => {
-  //     RenderComponent(initLibraryWatched);
-  //   })
-  //   .on(`/movie/:id`, params => {
-  //     RenderComponent(initMoviePage, params);
-  //   })
-  //   .on(`/search`, params => {
-  //     console.log(params);
-  //     RenderComponent(initMoviePage, params).then(() => {
-  //       //addHomePageEventHandlers();
-  //     });
-  //   })
-  //   .on(`/movie/:id`, params => {
-  //     RenderComponent(initMoviePage, params).then(() => {
-  //       addHomePageEventHandlers();
-  //     });
-  //   })
 };
 
 export const navigate = path => {

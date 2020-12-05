@@ -1,44 +1,27 @@
-import templateHeader from '../templates/header.hbs';
-import templateSectionCards from '../templates/section__cards.hbs';
-import templateFooter from '../templates/hooter.hbs';
-
-import pagination from '../components/pagination';
 import medb from '../lib/ApiMEDB';
-
-const dataBuild = ({ results }, genres) => {
-  /** Функция добавляет в полученные с
-   *  сервера данные поля year в котором
-   *  будет храниться год выхода фильма и
-   *  genres в котором будет хранится массив
-   *  с данными о жанрах вида {id, name}
-   *
-   */
-  const resultsArray = [...results];
-  resultsArray.forEach(filmObj => {
-    filmObj.year = filmObj.release_date.slice(0, 4);
-    filmObj.genres = [];
-    filmObj.genre_ids.forEach(id => {
-      const genrObj = genres.find(item => item.id === id);
-      filmObj.genres.push(genrObj);
-    });
-  });
-  return resultsArray;
-};
+import baseMarkup from '../components/basemarkup';
+import { navigate } from '../lib/Router';
+import Build from '../lib/Data-builder';
 
 const init = async (params, query) => {
   console.log(params);
   console.log(`params: ${query}`);
-  debugger;
-  const currentPage = params.split('=')[1];
+  //debugger;
+  // {action: "home"}
+  // page=3&qwe=uuu
+  let currentPage = 1;
+  if (!!query) {
+    currentPage = query.slice(5);
+  }
+  const url = '?';
   const data = await medb.getPopularFilms(currentPage);
-  const { genres: genresArr } = await medb.getGenresList();
-  const results = dataBuild(data, genresArr);
+  console.log(data);
+  const { genres: genresArr } = await medb.getGenresList(data);
+  console.log(genresArr);
+  const results = Build(data, genresArr);
+  console.log(results);
   const duffElem = document.createElement('div');
-
-  duffElem.insertAdjacentHTML('beforeend', templateHeader());
-  duffElem.insertAdjacentHTML('beforeend', templateSectionCards(results));
-  duffElem.insertAdjacentHTML('beforeend', pagination(data));
-  duffElem.insertAdjacentHTML('beforeend', templateFooter());
+  duffElem.insertAdjacentHTML('beforeend', baseMarkup(results, 'home?'));
 
   duffElem.querySelector('.search__navLibrary').remove();
   duffElem.querySelector('header').classList.add('header__img-home');
@@ -62,8 +45,9 @@ const submitHandler = async event => {
         'Search result not successful. Enter the correct movie name and',
       );
     } else {
-      console.log(`${total_results}кол фильмов`);
-      event.target.reset();
+      //console.log(`${total_results}кол фильмов`);
+      //event.target.reset();
+      navigate('/search?request=' + searchQuery);
     }
     console.log(searchQuery);
   }

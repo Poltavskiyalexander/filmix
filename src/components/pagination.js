@@ -1,7 +1,7 @@
 import templateSectionPagination from '../templates/section__pagination.hbs';
 import paginationList from '../templates/navigation_list.hbs';
 
-const paginationInit = obj => {
+const paginationInit = (obj, url) => {
   const { page, total_pages: totalPages } = obj;
   const buffElem = document.createElement('div');
 
@@ -19,11 +19,11 @@ const paginationInit = obj => {
   if (totalPages > 1) {
     lists.insertAdjacentHTML(
       'beforeend',
-      paginationList({ page: 1, more: true }),
+      paginationList({ page: 1, url, more: true }),
     );
 
     for (let i = page - 3; i <= page + 3; i++) {
-      let str = paginationList({ page: i, more: true });
+      let str = paginationList({ page: i, url, more: true });
       if (i <= 1 || i >= totalPages) {
       } else {
         if (i === page - 3) {
@@ -32,6 +32,7 @@ const paginationInit = obj => {
             paginationList({
               class: 'numpage__more',
               page: '...',
+              url,
               more: false,
             }),
           );
@@ -41,6 +42,7 @@ const paginationInit = obj => {
             paginationList({
               class: 'numpage__more',
               page: '...',
+              url,
               more: false,
             }),
           );
@@ -52,7 +54,7 @@ const paginationInit = obj => {
 
     lists.insertAdjacentHTML(
       'beforeend',
-      paginationList({ page: totalPages, more: true }),
+      paginationList({ page: totalPages, url, more: true }),
     );
     const itemsRefs = buffElem.querySelectorAll('.numpage__list-item');
 
