@@ -1,5 +1,7 @@
-export default class LocalStorage {
-  constructor() {}
+export default class storage {
+  constructor(storage = true) {
+    this._storage = storage;
+  }
 
   set(key, value) {
     localStorage.setItem(key, value);
@@ -21,7 +23,3 @@ export default class LocalStorage {
     localStorage.clear();
   }
 }
-
-// const ls = new LocalStorage();
-
-// ls.
