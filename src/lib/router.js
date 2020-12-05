@@ -13,23 +13,23 @@ import initMoviePage from '../pages/movie';
 import initSearchPage from '../pages/search';
 
 const root = null;
-const useHash = true; // Defaults to: false
+const useHash = true;
 const hash = '#';
 const router = new Navigo(root, useHash);
 
 const initRouter = () => {
-  debugger;
+  // debugger;
   router
     .on({
       '/': () => {
-        debugger;
+        // debugger;
         navigate('/');
         RenderComponent(initHomePage).then(() => {
           addEventHandlers();
         });
       },
       '/:action': (params, query) => {
-        debugger;
+        // debugger;
         if (params.action === 'home') {
           RenderComponent(initHomePage, params, query).then(() => {
             addEventHandlers();
@@ -42,13 +42,13 @@ const initRouter = () => {
         }
       },
       '/movie/:id': (params, query) => {
-        debugger;
+        // debugger;
         RenderComponent(initMoviePage, params, query).then(() => {
           addEventHandlers();
         });
       },
       '/library/:action': (params, query) => {
-        debugger;
+        // debugger;
         if (params.action === 'queu' || params.action === 'watched') {
           RenderComponent(initLibrary, params, query).then(() => {
             addEventHandlers();
@@ -57,8 +57,8 @@ const initRouter = () => {
       },
     })
     .notFound(function (query) {
-      console.log(query);
-      debugger;
+      // console.log(query);
+      // debugger;
     })
     .resolve();
 };

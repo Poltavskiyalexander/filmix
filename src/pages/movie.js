@@ -6,8 +6,7 @@ import { navigate } from '../lib/Router';
 const init = async (params, query) => {
   //console.log(params);
   //console.log(`params: ${query}`);
-
-  debugger;
+  //debugger;
 
   const data = await medb.getFilmsId(params.id);
 

@@ -19,11 +19,9 @@ const parseQuery = query => {
 const init = async (params, query) => {
   //console.log(params);
   //console.log(`params: ${query}`);
+  // debugger;
 
-  debugger;
-  console.log();
   const qweryObj = parseQuery(`${query}`); //${params.action}=
-
   const data = await medb.getFilmsQuery(qweryObj.request, qweryObj.page);
   const { genres: genresArr } = await medb.getGenresList(data);
   const results = Build(data, genresArr);

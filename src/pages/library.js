@@ -19,7 +19,7 @@ const parseQuery = query => {
 const init = async (params, query) => {
   //console.log(params);
   //console.log(`params: ${query}`);
-  debugger;
+  // debugger;
   console.log();
   const qweryObj = parseQuery(`${query}`);
   let url;

@@ -6,13 +6,14 @@ import Build from '../lib/Data-builder';
 const init = async (params, query) => {
   console.log(params);
   console.log(`params: ${query}`);
-  debugger;
+  //debugger;
   // {action: "home"}
   // page=3&qwe=uuu
   let currentPage = 1;
   if (!!query) {
     currentPage = query.slice(5);
   }
+  const url = '?';
   const data = await medb.getPopularFilms(currentPage);
   console.log(data);
   const { genres: genresArr } = await medb.getGenresList(data);
@@ -20,7 +21,7 @@ const init = async (params, query) => {
   const results = Build(data, genresArr);
   console.log(results);
   const duffElem = document.createElement('div');
-  duffElem.insertAdjacentHTML('beforeend', baseMarkup(results, 'home'));
+  duffElem.insertAdjacentHTML('beforeend', baseMarkup(results, 'home?'));
 
   duffElem.querySelector('.search__navLibrary').remove();
   duffElem.querySelector('header').classList.add('header__img-home');
