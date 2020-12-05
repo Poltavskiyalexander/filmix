@@ -38,8 +38,7 @@ const init = async (params, query) => {
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', baseMarkup(results, url));
 
-  duffElem.querySelector('.form-search').remove();
-  duffElem.querySelector('.search__libraryFilmList').remove();
+  duffElem.querySelector('.form-search-library').remove();
   duffElem.querySelector('.search__navLibrary').classList.remove('headen');
 
   duffElem.querySelector('header').classList.add('header__img-watched');
