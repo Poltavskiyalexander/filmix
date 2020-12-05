@@ -11,6 +11,7 @@ const init = async () => {
   duffElem.insertAdjacentHTML('beforeend', templateHeader());
   duffElem.insertAdjacentHTML('beforeend', templateSectionMovieCard(data));
   duffElem.insertAdjacentHTML('beforeend', templateFooter());
+
   return duffElem.innerHTML;
 };
 
@@ -19,31 +20,15 @@ export default init;
 const submitWatched = event => {
   const id = event.currentTarget.dataset.name;
   localStorage.setItem('Watched ID', id);
+  // debugger;
 
-  if (action__watched.classList.contains('active')) {
-    action__watched.innerHTML = 'ADD TO WATCH';
-    action__watched.classList.remove('active');
+  const watchedRef = document.querySelector('#action__watched');
+  if (localStorage.getItem('Watched ID') !== null) {
+    watchedRef.classList.add('active');
   } else {
-    action__watched.classList.add('active');
-    action__watched.innerHTML = 'ADDED TO WATCH';
+    watchedRef.classList.remove('active');
   }
 };
-
-// 1. проверить локал сторедж на наличие ключа
-// 2. если ключ есть - добавить класс актив
-// 3. если ключа нет - класс убрать
-
-// не рабочая
-// const submitQueue = event => {
-//   const id = event.currentTarget.dataset.name;
-//   ls = localStorage.setItem('Queue ID', id);
-
-//   if (localStorage.getItem('Queue ID') !== null) {
-//     document.getElementById(action__queue).classList.add('active');
-//   } else {
-//     document.getElementById(action__queue).classList.remove('active');
-//   }
-// };
 
 const submitQueue = event => {
   const id = event.currentTarget.dataset.name;
@@ -56,28 +41,7 @@ const submitQueue = event => {
     action__queue.innerHTML = 'ADDED TO QUEUE';
     action__queue.classList.add('active');
   }
-
-  // document.getElementById('action__queue').onclick = function () {
-  //   if (action__queue.classList.contains('active')) {
-  //     action__queue.classList.remove('active');
-  //   } else {
-  //     action__queue.classList.add('active');
-  //   }
-  // };
 };
-// рабочая, но баганая
-// const submitQueue = event => {
-//   const id = event.currentTarget.dataset.name;
-//   localStorage.setItem('Queue ID', id);
-
-//   document.getElementById('action__queue').onclick = function () {
-//     if (action__queue.classList.contains('active')) {
-//       action__queue.classList.remove('active');
-//     } else {
-//       action__queue.classList.add('active');
-//     }
-//   };
-// };
 
 export const addEventQueuHandlers = () => {
   document
