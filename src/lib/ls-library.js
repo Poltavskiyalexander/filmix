@@ -4,7 +4,7 @@ export default class storage {
   }
 
   set(key, value) {
-    localStorage.setItem(key, value);
+    localStorage.setItem(key, JSON.stringify(value));
   }
 
   remove(key) {
@@ -16,7 +16,7 @@ export default class storage {
   }
 
   get(key) {
-    return localStorage.getItem(key);
+    return JSON.parse(localStorage.getItem(key));
   }
 
   clear() {
