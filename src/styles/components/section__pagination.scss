@@ -49,3 +49,20 @@
   background: #f7f7f7;
   padding: 12px 12px 12px 12px;
 }
+.media-hidden {
+  display: none;
+}
+@media (max-width: 1023px) {
+  .container {
+    max-width: 648px;
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    max-width: 310px;
+  }
+  .numpage {
+    margin-bottom: 40px;
+  }
+}
