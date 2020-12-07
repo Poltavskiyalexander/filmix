@@ -19,7 +19,7 @@ export default init;
 
 const submitWatched = event => {
   const id = event.currentTarget.dataset.name;
-  localStorage.setItem('Watched ID', id);
+  // localStorage.setItem('Watched ID', id);
   // debugger;
 
   const watchedRef = document.querySelector('#action__watched');
@@ -32,7 +32,7 @@ const submitWatched = event => {
 
 const submitQueue = event => {
   const id = event.currentTarget.dataset.name;
-  localStorage.setItem('Queue ID', id);
+  // localStorage.setItem('Queue ID', id);
 
   if (action__queue.classList.contains('active')) {
     action__queue.innerHTML = 'ADD TO QUEUE';

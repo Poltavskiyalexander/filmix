@@ -2,7 +2,6 @@ import Navigo from 'navigo';
 import RenderComponent from './Component';
 import initHomePage, { addEventHandlers } from '../pages/home';
 import initLibraryQueu, { addEventQueuHandlers } from '../pages/library-queu';
-import LocalStorage from '../lib/ls-library';
 import initLibraryWatched from '../pages/library-watched';
 import initMoviePage from '../pages/movie';
 
