@@ -27,4 +27,14 @@ export default {
     const qweryString = `${BASE_URL}/3/genre/movie/list?api_key=${API_KEY}&language=en-US`;
     return loadData(qweryString);
   },
+  getFilmsByGenre(genreId, year) {
+    const queryString = `${BASE_URL}/3/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&primary_release_year=${year}&sort_by=popularity.desc&language=en-US`;
+    return loadData(queryString);
+  },
+  getMovies(filmId) {
+    const queryString = `${BASE_URL}/3/movie/${filmId}/videos?api_key=${API_KEY}&language=en-US`;
+    return loadData(queryString);
+    //"key": "5Byeq_hyh2U"
+    //https://www.youtube.com/watch?v=5Byeq_hyh2U
+  },
 };
