@@ -97,11 +97,15 @@
   font-size: 12px;
 }
 
+.button-action:focus {
+  outline: none;
+}
+
 .button-action:not(:last-child) {
   margin-right: 12px;
 }
 
-.button-action:hover {
+.active {
   background: color(secondary);
   color: color(primary);
   border: none;
