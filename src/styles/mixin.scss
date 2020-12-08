@@ -16,7 +16,7 @@
 
 //Миксин для универсальной записи медиаправил
 @mixin media-query($range, $mobile-Firstlag: false) {
-  $extra-small: $media-xtra-small;
+  $extra-small: $media-extra-small;
   $small: $media-small;
   $medium: $media-medium;
   $large: $media-large;
