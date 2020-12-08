@@ -1,0 +1,23 @@
+#slider {
+  background-color: #f26739;
+}
+.slider_body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 300px;
+  margin-bottom: 50px;
+}
+
+.slider-arrow {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: #fff;
+  margin: 0px;
+  transition: box-shadow 0.2s ease, transform 0.5s ease, margin-top 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
