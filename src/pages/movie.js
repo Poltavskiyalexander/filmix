@@ -2,12 +2,9 @@ import medb from '../lib/ApiMEDB';
 import baseMarkup from '../components/basemarkup';
 import movieMarkup from '../templates/movie__card.hbs';
 import { navigate } from '../lib/Router';
+import localStorage from '../lib/storage';
 
 const init = async (params, query) => {
-  //console.log(params);
-  //console.log(`params: ${query}`);
-  //debugger;
-
   const data = await medb.getFilmsId(params.id);
 
   const duffElem = document.createElement('div');
@@ -17,45 +14,50 @@ const init = async (params, query) => {
   headerRef.classList.add('header__img-details');
   headerRef.querySelector('.form-search').remove();
 
+  const refs = {
+    watchedButton: duffElem.querySelector('.action__watched'),
+    queueButton: duffElem.querySelector('.action__queue'),
+  };
+
+  const attrName = 'data-name';
+
+  const watchedAttribute = refs.watchedButton.getAttribute(attrName);
+  const queueAttribute = refs.queueButton.getAttribute(attrName);
+
+  const ls = new localStorage();
+
+  if (ls.checkDataInLocalStorage('action__watched', watchedAttribute)) {
+    // debugger;
+
+    refs.watchedButton.classList.add('active');
+  } else {
+    refs.watchedButton.classList.remove('active');
+  }
+
+  if (ls.checkDataInLocalStorage('action__queue', queueAttribute)) {
+    refs.queueButton.classList.add('active');
+  } else {
+    refs.queueButton.classList.remove('active');
+  }
+
   return duffElem.innerHTML;
 };
 export default init;
 
-const submitHandler = async event => {
+const buttonClickHandler = event => {
   event.preventDefault();
-  const searchQuery = event.target.querySelector('input[name="text"]').value;
-  const textError = document.querySelector('.search__libraryFilmList');
-
-  if (searchQuery !== '') {
-    const data = await medb.getFilmsQuery(searchQuery);
-    console.log(data);
-    const { total_results } = data;
-    if (total_results === 0) {
-      textError.classList.remove('headen');
-      console.log(
-        'Search result not successful. Enter the correct movie name and',
-      );
-    } else {
-      //console.log(`${total_results}кол фильмов`);
-      //event.target.reset();
-      navigate('/search?request=' + searchQuery);
-    }
-    console.log(searchQuery);
-  }
-};
-
-const hideErrorHandler = event => {
-  event.preventDefault();
-  const textError = document.querySelector('.search__libraryFilmList');
-  textError.classList.add('headen');
+  const buttonRef = event.target;
+  // if (buttonRef.innerHTML = )
+  buttonRef.classList.add('active');
+  buttonRef.innerHTML('');
 };
 
 export const addEventHandlers = () => {
   document
-    .querySelector('.form-search')
-    .addEventListener('submit', submitHandler);
+    .querySelector('.action__watched')
+    .addEventListener('click', buttonClickHandler);
 
   document
-    .querySelector('input[name="text"]')
-    .addEventListener('click', hideErrorHandler);
+    .querySelector('action__queue')
+    .addEventListener('click', buttonClickHandler);
 };

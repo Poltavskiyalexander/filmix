@@ -60,11 +60,9 @@ const hideErrorHandler = event => {
 };
 
 export const addEventHandlers = () => {
-  document
-    .querySelector('.form-search')
-    .addEventListener('submit', submitHandler);
-
-  document
-    .querySelector('input[name="text"]')
-    .addEventListener('click', hideErrorHandler);
+  // document
+  //   .querySelector('.form-search')
+  //   .addEventListener('submit', submitHandler);
+  // document.querySelector('input[name="text"]');
+  // .addEventListener('click', hideErrorHandler);
 };
