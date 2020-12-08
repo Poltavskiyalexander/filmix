@@ -4,8 +4,8 @@ import { navigate } from '../lib/Router';
 import Build from '../lib/Data-builder';
 
 const init = async (params, query) => {
-  console.log(params);
-  console.log(`params: ${query}`);
+  // console.log(params);
+  // console.log(`params: ${query}`);
   //debugger;
   // {action: "home"}
   // page=3&qwe=uuu
@@ -15,11 +15,11 @@ const init = async (params, query) => {
   }
   const url = '?';
   const data = await medb.getPopularFilms(currentPage);
-  console.log(data);
+  // console.log(data);
   const { genres: genresArr } = await medb.getGenresList(data);
-  console.log(genresArr);
+  // console.log(genresArr);
   const results = Build(data, genresArr);
-  console.log(results);
+  // console.log(results);
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', baseMarkup(results, 'home?'));
 
@@ -49,7 +49,7 @@ const submitHandler = async event => {
       //event.target.reset();
       navigate('/search?request=' + searchQuery);
     }
-    console.log(searchQuery);
+    // console.log(searchQuery);
   }
 };
 

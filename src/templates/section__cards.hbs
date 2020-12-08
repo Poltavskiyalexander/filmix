@@ -3,13 +3,23 @@
         <div class="cards__film-wrap">
             {{#each this}}
             <div class="card__film">
-                <div class="card__img">
-                    <a class="card__img-film" href="#/movie/{{id}}"><img src="https://image.tmdb.org/t/p/w220_and_h330_face{{poster_path}}"
-                            alt="poster {{title}}" class="card__img-film" /></a>
+                <div class="card__overlay">
+                    <div class="card__img">
+                        <a class="card__img-film" href="#/movie/{{id}}"><img
+                                src="https://image.tmdb.org/t/p/w220_and_h330_face{{poster_path}}"
+                                alt="poster {{title}}" class="card__img-film" /></a>
+                    </div>
+                    <a class="card__overlay-text" href="#/movie/{{id}}">
+                        <p class="card__title text-over">Title: {{title}}</p>
+                        <p class="card__release-date text-over">Release: {{release_date}}</p>
+                        <p class="card__original-language text-over">Language: {{original_language}}</p>
+                        <p class="card__popularity text-over">Popularity: {{popularity}}</p>
+                    </a>
                 </div>
                 <div class="card__text">
                     <a href=" #/movie/{{id}}" class="card__film-name text">{{title}}</a>
-                    <br /><a href="#" class="card__film-about text">{{#each genres}}{{name}}{{#if @last}}{{else}}, {{/if}}{{/each}} |
+                    <br /><a href="#" class="card__film-about text">{{#each genres}}{{name}}{{#if @last}}{{else}},
+                        {{/if}}{{/each}} |
                         {{year}}</a>
                 </div>
             </div>
