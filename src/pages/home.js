@@ -51,7 +51,7 @@ const submitHandler = async event => {
     } else {
       navigate('/search?request=' + searchQuery);
     }
-    console.log(searchQuery);
+    // console.log(searchQuery);
   }
 };
 

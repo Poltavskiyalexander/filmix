@@ -19,6 +19,7 @@
   }
 
   & .card__film {
+    position: relative;
     padding: 15px;
     width: 33.333%;
     @include media-query(extra-large) {
@@ -28,10 +29,8 @@
       width: 100%;
     }
     .card {
-      &__img {
-        border-radius: 5px;
-      }
       &__img-film {
+        border-radius: 5px;
         width: 100%;
         height: auto;
       }
@@ -43,4 +42,30 @@
       }
     }
   }
+}
+
+.card__overlay:hover .card__overlay-text {
+  visibility: visible;
+}
+
+.card__overlay-text {
+  visibility: hidden;
+  position: absolute;
+  width: 84%;
+  top: 10%;
+  right: 8%;
+  line-height: 2.3;
+  background-color: rgba(36, 36, 36, 0.609);
+  transition: all 0.5s linear;
+  border-radius: 5px;
+  border: 3px solid color(secondary);
+  font-size: $input-size-btn;
+}
+
+.text-over {
+  text-align: center;
+  font-family: $primary-font-stack;
+  font-weight: $black-font-size;
+  font-style: normal;
+  color: color(secondary);
 }
