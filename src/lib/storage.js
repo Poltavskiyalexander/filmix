@@ -1,3 +1,5 @@
+// import { all } from 'core-js/fn/promise';
+
 export default class storage {
   constructor(storage = true) {
     this._storage = storage;
@@ -39,9 +41,11 @@ export default class storage {
   }
 
   checkDataInLocalStorage(key, value) {
-    if (this.has(ID_VALUE)) {
-      const allValues = this.get(ID_VALUE);
-      return allValues.includes(value);
+    if (this.has(key)) {
+      const allValues = this.get(key);
+      return true;
+    } else {
+      return false;
     }
   }
 
