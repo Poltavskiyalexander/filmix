@@ -1,4 +1,5 @@
-<section class="choosed_movie">
+<section class="choosed_movie"
+  style="background-image: url('https://image.tmdb.org/t/p/w220_and_h330_face{{backdrop_path}}')">
   <div class="container">
     <div class="movie_card">
       <div class="details-image">
@@ -34,10 +35,19 @@
           {{overview}}
         </p>
         <form>
-          <button id="action__watched" class="button-action action__watched" data-name='{{id}}'>add to watched</button>
+          <button id="action__watched" class="button-action action__watched" data-name='{{id}}'>add to
+            watched</button>
           <button id="action__queue" class="button-action action__queue" data-name='{{id}}'>add to queue</button>
         </form>
       </div>
     </div>
   </div>
+</section>
+<section class="trailer">
+  <div class="trailer-title">
+    <p class="trailer-label">Трейлер к фильму {{title}}</p>
+  </div>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/IDaC2_NYCgg" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
 </section>
