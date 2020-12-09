@@ -11,6 +11,7 @@ import initHomePage, {
 import initLibrary from '../pages/library';
 import initMoviePage from '../pages/movie';
 import initSearchPage from '../pages/search';
+import initNotFoundPage from '../pages/not-found';
 
 const root = null;
 const useHash = true;
@@ -28,19 +29,19 @@ const initRouter = () => {
           addEventHandlers();
         });
       },
-      '/:action': (params, query) => {
-        // debugger;
-        if (params.action === 'home') {
-          RenderComponent(initHomePage, params, query).then(() => {
-            addEventHandlers();
-          });
-        }
-        if (params.action === 'search') {
-          RenderComponent(initSearchPage, params, query).then(() => {
-            addEventHandlers();
-          });
-        }
-      },
+      // '/:action': (params, query) => {
+      //   // debugger;
+      //   if (params.action === 'home') {
+      //     RenderComponent(initHomePage, params, query).then(() => {
+      //       addEventHandlers();
+      //     });
+      //   }
+      //   if (params.action === 'search') {
+      //     RenderComponent(initSearchPage, params, query).then(() => {
+      //       addEventHandlers();
+      //     });
+      //   }
+      // },
       '/movie/:id': (params, query) => {
         // debugger;
         RenderComponent(initMoviePage, params, query).then(() => {
@@ -56,9 +57,12 @@ const initRouter = () => {
         }
       },
     })
-    .notFound(function (query) {
-      // console.log(query);
+    .notFound(function () {
+      console.log('Not found page');
       // debugger;
+      RenderComponent(initNotFoundPage).then(() => {
+        addEventHandlers();
+      });
     })
     .resolve();
 };

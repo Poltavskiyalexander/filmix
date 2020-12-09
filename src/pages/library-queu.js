@@ -1,6 +1,6 @@
 import templateHeader from '../templates/header.hbs';
 import templateSectionMovieCard from '../templates/movie__card.hbs';
-import templateFooter from '../templates/hooter.hbs';
+import templateFooter from '../templates/footer.hbs';
 
 import medb from '../lib/ApiMEDB';
 import { doc } from 'prettier';

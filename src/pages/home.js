@@ -26,6 +26,9 @@ const init = async (params, query) => {
   duffElem.querySelector('.search__navLibrary').remove();
   duffElem.querySelector('header').classList.add('header__img-home');
 
+  medb.getCinemaFilms(); //для проверки фильмов в прокате
+  medb.getCinemaFilms('ru'); //для проверки языка
+
   return duffElem.innerHTML;
 };
 export default init;

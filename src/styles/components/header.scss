@@ -9,12 +9,20 @@
 .headen {
   opacity: 0;
 }
+///////////////////////////not-found///////////////////////////////
+.not_found-banner {
+  height: 500px;
+  width: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: url('../../src/images/not-found.png');
+}
 
 ////////////////////header//////////////////////////////
 
 .header {
   text-align: center;
-  margin-bottom: 60px;
   height: 230px;
   background-color: color(primary-text);
   background-size: cover;
@@ -84,9 +92,9 @@
 }
 
 @include media-query(medium) {
-  .header {
-    margin-bottom: 20px;
-  }
+  // .header {
+  //   margin-bottom: 20px;
+  // }
 
   .header__logoName {
     display: none;
