@@ -4,28 +4,26 @@ import { navigate } from '../lib/Router';
 import Build from '../lib/Data-builder';
 
 const init = async (params, query) => {
-  console.log(params);
-  console.log(`params: ${query}`);
+  //console.log(`params: ${params}`);
+  //console.log(`query: ${query}`);
   //debugger;
-  // {action: "home"}
-  // page=3&qwe=uuu
   let currentPage = 1;
+
+  //---> переписать на адекватный метод <----
   if (!!query) {
     currentPage = query.slice(5);
   }
-  const url = '?';
+
   const data = await medb.getPopularFilms(currentPage);
-  console.log(data);
   const { genres: genresArr } = await medb.getGenresList(data);
-  console.log(genresArr);
   const results = Build(data, genresArr);
-  console.log(results);
+  //console.log(data);
+  //console.log(genresArr);
+  //console.log(results);
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', baseMarkup(results, 'home?'));
-
   duffElem.querySelector('.search__navLibrary').remove();
   duffElem.querySelector('header').classList.add('header__img-home');
-
   return duffElem.innerHTML;
 };
 export default init;
@@ -45,8 +43,6 @@ const submitHandler = async event => {
         'Search result not successful. Enter the correct movie name and',
       );
     } else {
-      //console.log(`${total_results}кол фильмов`);
-      //event.target.reset();
       navigate('/search?request=' + searchQuery);
     }
     console.log(searchQuery);

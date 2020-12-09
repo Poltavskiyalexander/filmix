@@ -12,10 +12,14 @@ const init = async (params, query) => {
 
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', baseMarkup());
-  const headerRef = duffElem.querySelector('.header');
-  headerRef.insertAdjacentHTML('afterend', movieMarkup(data));
-  headerRef.classList.add('header__img-details');
-  headerRef.querySelector('.form-search').remove();
+  const Resfs = {
+    header: duffElem.querySelector('.header'),
+    main: duffElem.querySelector('.main'),
+  };
+
+  Resfs.main.insertAdjacentHTML('beforeend', movieMarkup(data));
+  Resfs.header.classList.add('header__img-details');
+  Resfs.header.querySelector('.form-search').remove();
 
   return duffElem.innerHTML;
 };
@@ -44,18 +48,4 @@ const submitHandler = async event => {
   }
 };
 
-const hideErrorHandler = event => {
-  event.preventDefault();
-  const textError = document.querySelector('.search__libraryFilmList');
-  textError.classList.add('headen');
-};
-
-export const addEventHandlers = () => {
-  document
-    .querySelector('.form-search')
-    .addEventListener('submit', submitHandler);
-
-  document
-    .querySelector('input[name="text"]')
-    .addEventListener('click', hideErrorHandler);
-};
+export const addEventHandlers = () => {};

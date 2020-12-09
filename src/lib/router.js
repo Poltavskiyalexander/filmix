@@ -1,16 +1,21 @@
 import Navigo from 'navigo';
-
 import RenderComponent from './Component';
 
 import initHomePage, {
-  addEventHandlers,
-  linkMyLibraryHeader,
-  linkDetailsHeader,
+  addEventHandlers as addHomePageEventHandlers,
 } from '../pages/home';
-
-import initLibrary from '../pages/library';
-import initMoviePage from '../pages/movie';
-import initSearchPage from '../pages/search';
+import initLibrary, {
+  addEventHandlers as addLibraryPageEventHandlers,
+} from '../pages/library';
+import initMoviePage, {
+  addEventHandlers as addMoviePageEventHandlers,
+} from '../pages/movie';
+import initSearchPage, {
+  addEventHandlers as addSearchPageEventHandlers,
+} from '../pages/search';
+import initNotFound, {
+  addEventHandlers as addNotFoundPageEventHandlers,
+} from '../pages/not-found';
 
 const root = null;
 const useHash = true;
@@ -25,40 +30,55 @@ const initRouter = () => {
         // debugger;
         navigate('/');
         RenderComponent(initHomePage).then(() => {
-          addEventHandlers();
+          addHomePageEventHandlers();
         });
       },
       '/:action': (params, query) => {
         // debugger;
         if (params.action === 'home') {
           RenderComponent(initHomePage, params, query).then(() => {
-            addEventHandlers();
+            addHomePageEventHandlers();
           });
+          return;
         }
         if (params.action === 'search') {
           RenderComponent(initSearchPage, params, query).then(() => {
-            addEventHandlers();
+            addSearchPageEventHandlers();
           });
+          return;
         }
+        RenderComponent(initNotFound).then(() => {
+          addNotFoundPageEventHandlers();
+        });
       },
       '/movie/:id': (params, query) => {
         // debugger;
         RenderComponent(initMoviePage, params, query).then(() => {
-          addEventHandlers();
+          addMoviePageEventHandlers();
+          return;
+        });
+        RenderComponent(initNotFound).then(() => {
+          addNotFoundPageEventHandlers();
         });
       },
       '/library/:action': (params, query) => {
         // debugger;
         if (params.action === 'queu' || params.action === 'watched') {
           RenderComponent(initLibrary, params, query).then(() => {
-            addEventHandlers();
+            addLibraryPageEventHandlers();
           });
+          return;
         }
+        RenderComponent(initNotFound).then(() => {
+          addNotFoundPageEventHandlers();
+        });
       },
     })
-    .notFound(function (query) {
-      // console.log(query);
+    .notFound(() => {
       // debugger;
+      RenderComponent(initNotFound).then(() => {
+        addNotFoundPageEventHandlers();
+      });
     })
     .resolve();
 };
