@@ -10,6 +10,7 @@ const init = async (params, query) => {
   //debugger;
 
   const data = await medb.getFilmsId(params.id);
+  console.log(data);
 
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', baseMarkup());
