@@ -1,9 +1,9 @@
 import medb from '../lib/ApiMEDB';
 import baseMarkup from '../components/basemarkup';
+import sliderMarkup from '../components/slider';
 import { navigate } from '../lib/Router';
 import Build from '../lib/Data-builder';
 import { paginationDekstop, paginationMobile } from '../components/pagination';
-import sliderMurkup from '../templates/section_slider.hbs';
 
 const init = async (params, query) => {
   //console.log(`params: ${params}`);
@@ -19,17 +19,24 @@ const init = async (params, query) => {
   const data = await medb.getPopularFilms(currentPage);
   const { genres: genresArr } = await medb.getGenresList(data);
   const results = Build(data, genresArr);
+
+  const sliderData = await medb.getCinemaFilms(data);
+  const sliderResults = Build(sliderData, genresArr).results;
+
+  //const
   //console.log(data);
   //console.log(genresArr);
   //console.log(results);
+  //console.log(sliderResults);
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', baseMarkup(results, 'home?'));
-  duffElem
-    .querySelector('.header')
-    .insertAdjacentHTML('afterend', sliderMurkup());
-
-  duffElem.querySelector('.search__navLibrary').remove();
-  duffElem.querySelector('header').classList.add('header__img-home');
+  const resfs = {
+    header: duffElem.querySelector('.header'),
+    main: duffElem.querySelector('.main'),
+  };
+  resfs.main.insertAdjacentHTML('afterbegin', sliderMarkup(sliderResults));
+  resfs.header.querySelector('.search__navLibrary').remove();
+  resfs.header.classList.add('header__img-home');
   return duffElem.innerHTML;
 };
 export default init;
