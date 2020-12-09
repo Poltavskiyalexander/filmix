@@ -2,6 +2,8 @@ import medb from '../lib/ApiMEDB';
 import baseMarkup from '../components/basemarkup';
 import { navigate } from '../lib/Router';
 import Build from '../lib/Data-builder';
+import { paginationDekstop, paginationMobile } from '../components/pagination';
+import sliderMurkup from '../templates/section_slider.hbs';
 
 const init = async (params, query) => {
   //console.log(`params: ${params}`);
@@ -22,6 +24,10 @@ const init = async (params, query) => {
   //console.log(results);
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', baseMarkup(results, 'home?'));
+  duffElem
+    .querySelector('.header')
+    .insertAdjacentHTML('afterend', sliderMurkup());
+
   duffElem.querySelector('.search__navLibrary').remove();
   duffElem.querySelector('header').classList.add('header__img-home');
   return duffElem.innerHTML;
@@ -63,4 +69,15 @@ export const addEventHandlers = () => {
   document
     .querySelector('input[name="text"]')
     .addEventListener('click', hideErrorHandler);
+
+  // const mediaQuery = window.matchMedia('(min-width: 768px)');
+  // function handleTabletChange(e) {
+  //   if (e.matches) {
+  //     paginationMobile();
+  //   } else {
+  //     paginationDekstop();
+  //   }
+  // }
+  // mediaQuery.addListener(handleTabletChange);
+  // handleTabletChange(mediaQuery);
 };
