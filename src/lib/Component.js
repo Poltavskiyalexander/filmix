@@ -1,16 +1,15 @@
 import { navigate } from './Router';
-
-const ROOT_ELEMENT = document.querySelector('body');
+const ROOT_ELEMENT_SELECTOR = '#wrapper';
 
 const RenderComponent = async (
   renderFunction,
-  params,
-  query,
-  rootElement = ROOT_ELEMENT,
+  params = null,
+  query = null,
+  rootElementSelector = ROOT_ELEMENT_SELECTOR,
 ) => {
   // debugger;
+  const rootElement = document.querySelector(rootElementSelector);
   const template = await renderFunction(params, query);
-
   rootElement.innerHTML = template;
   rootElement.addEventListener('click', linkClickHandler);
 };

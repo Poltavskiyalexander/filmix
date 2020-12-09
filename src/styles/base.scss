@@ -3,6 +3,7 @@
 *::after {
   list-style: none;
 }
+
 body {
   font-family: 'Roboto';
   color: #000000;
@@ -12,15 +13,22 @@ body {
   max-width: 904px;
   padding: 0 15px;
   margin: 0 auto;
-}
-@media (max-width: 1023px) {
-  .container {
+  @include media-query(extra-large) {
     max-width: 648px;
+  }
+  @include media-query(medium) {
+    max-width: 310px;
   }
 }
 
-@media (max-width: 767px) {
-  .container {
-    max-width: 310px;
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  .main {
+    flex: 1 0 auto;
+  }
+  .footer {
+    flex: 0 0 auto;
   }
 }

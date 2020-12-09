@@ -39,6 +39,7 @@
   padding: 13px 13px 11px 13px;
 }
 .numpage__list-item {
+  text-decoration: none;
   margin-left: 16px;
   margin-right: 16px;
   color: black;
@@ -48,4 +49,22 @@
   border-radius: 5px;
   background: #f7f7f7;
   padding: 12px 12px 12px 12px;
+}
+
+@media (max-width: 1023px) {
+  .container {
+    max-width: 648px;
+  }
+}
+
+@media (max-width: 767px) {
+  .container {
+    max-width: 310px;
+  }
+  .media-hidden {
+    display: none;
+  }
+  .numpage {
+    margin-bottom: 40px;
+  }
 }

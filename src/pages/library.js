@@ -17,10 +17,9 @@ const parseQuery = query => {
 };
 
 const init = async (params, query) => {
-  //console.log(params);
-  //console.log(`params: ${query}`);
-  // debugger;
-  console.log();
+  //console.log(`params: ${params}`);
+  //console.log(`query: ${query}`);
+  //debugger;
   const qweryObj = parseQuery(`${query}`);
   let url;
   if (params.action === 'queu') {
@@ -37,31 +36,11 @@ const init = async (params, query) => {
 
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', baseMarkup(results, url));
-
   duffElem.querySelector('.form-search-library').remove();
-  duffElem.querySelector('.search__navLibrary').classList.remove('headen');
-
   duffElem.querySelector('header').classList.add('header__img-watched');
 
   return duffElem.innerHTML;
 };
 export default init;
 
-const submitWatched = event => {
-  const id = event.currentTarget.dataset.name;
-  localStorage.setItem('Watched ID', id);
-};
-
-const submitQueue = event => {
-  const id = event.currentTarget.dataset.name;
-  localStorage.setItem('Queue ID', id);
-};
-
-export const addEventQueuHandlers = () => {
-  document
-    .querySelector('.action__watched')
-    .addEventListener('click', submitWatched);
-  document
-    .querySelector('.action__queue')
-    .addEventListener('click', submitQueue);
-};
+export const addEventHandlers = () => {};

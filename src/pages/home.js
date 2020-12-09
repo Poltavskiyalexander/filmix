@@ -2,30 +2,34 @@ import medb from '../lib/ApiMEDB';
 import baseMarkup from '../components/basemarkup';
 import { navigate } from '../lib/Router';
 import Build from '../lib/Data-builder';
+import { paginationDekstop, paginationMobile } from '../components/pagination';
+import sliderMurkup from '../templates/section_slider.hbs';
 
 const init = async (params, query) => {
-  // console.log(params);
-  // console.log(`params: ${query}`);
+  //console.log(`params: ${params}`);
+  //console.log(`query: ${query}`);
   //debugger;
-  // {action: "home"}
-  // page=3&qwe=uuu
   let currentPage = 1;
+
+  //---> переписать на адекватный метод <----
   if (!!query) {
     currentPage = query.slice(5);
   }
-  const url = '?';
+
   const data = await medb.getPopularFilms(currentPage);
-  // console.log(data);
   const { genres: genresArr } = await medb.getGenresList(data);
-  // console.log(genresArr);
   const results = Build(data, genresArr);
-  // console.log(results);
+  //console.log(data);
+  //console.log(genresArr);
+  //console.log(results);
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', baseMarkup(results, 'home?'));
+  duffElem
+    .querySelector('.header')
+    .insertAdjacentHTML('afterend', sliderMurkup());
 
   duffElem.querySelector('.search__navLibrary').remove();
   duffElem.querySelector('header').classList.add('header__img-home');
-
   return duffElem.innerHTML;
 };
 export default init;
@@ -45,8 +49,6 @@ const submitHandler = async event => {
         'Search result not successful. Enter the correct movie name and',
       );
     } else {
-      //console.log(`${total_results}кол фильмов`);
-      //event.target.reset();
       navigate('/search?request=' + searchQuery);
     }
     // console.log(searchQuery);
@@ -67,4 +69,15 @@ export const addEventHandlers = () => {
   document
     .querySelector('input[name="text"]')
     .addEventListener('click', hideErrorHandler);
+
+  // const mediaQuery = window.matchMedia('(min-width: 768px)');
+  // function handleTabletChange(e) {
+  //   if (e.matches) {
+  //     paginationMobile();
+  //   } else {
+  //     paginationDekstop();
+  //   }
+  // }
+  // mediaQuery.addListener(handleTabletChange);
+  // handleTabletChange(mediaQuery);
 };

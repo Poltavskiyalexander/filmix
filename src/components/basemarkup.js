@@ -8,10 +8,12 @@ const init = (data = null, url = '#') => {
   const duffElem = document.createElement('div');
 
   duffElem.insertAdjacentHTML('beforeend', templateHeader());
+  duffElem.insertAdjacentHTML('beforeend', '<main class="main"></main>');
   if (data) {
+    const mainRef = duffElem.querySelector('.main');
     const { results } = data;
-    duffElem.insertAdjacentHTML('beforeend', templateSectionCards(results));
-    duffElem.insertAdjacentHTML('beforeend', pagination(data, url));
+    mainRef.insertAdjacentHTML('beforeend', templateSectionCards(results));
+    mainRef.insertAdjacentHTML('beforeend', pagination(data, url));
   }
   duffElem.insertAdjacentHTML('beforeend', templateFooter());
   return duffElem.innerHTML;
