@@ -23,7 +23,6 @@ const init = async (params, query) => {
   Resfs.header.classList.add('header__img-details');
   Resfs.header.querySelector('.form-search').remove();
 
-
   const refs = {
     watchedButton: duffElem.querySelector('.action__watched'),
     queueButton: duffElem.querySelector('.action__queue'),
@@ -49,7 +48,6 @@ const init = async (params, query) => {
   } else {
     refs.queueButton.classList.remove('active');
   }
-
 
   return duffElem.innerHTML;
 };

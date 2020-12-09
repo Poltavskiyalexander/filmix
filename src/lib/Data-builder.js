@@ -1,3 +1,5 @@
+import { PATH } from './path';
+
 const dataBuild = (data, genres) => {
   /** Функция для преобразования данных
    * отдаваемых сервером в нужный формат
@@ -21,8 +23,15 @@ const dataBuild = (data, genres) => {
       });
     } else {
     }
+    if (filmObj.poster_path === null) {
+      filmObj.poster_path = PATH + '/not-found.png';
+    } else {
+      filmObj.poster_path =
+        'https://image.tmdb.org/t/p/w220_and_h330_face' + filmObj.poster_path;
+    }
   });
   dataArr.results = resultsArray;
+
   return dataArr;
 };
 export default dataBuild;

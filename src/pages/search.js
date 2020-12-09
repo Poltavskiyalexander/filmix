@@ -27,6 +27,10 @@ const init = async (params, query) => {
   const results = Build(data, genresArr);
   const url = `search?request=${qweryObj.request}&`;
 
+  console.log(data);
+  //console.log(genresArr);
+  console.log(results);
+
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', baseMarkup(results, url));
 
