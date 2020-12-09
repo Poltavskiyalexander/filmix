@@ -4,6 +4,10 @@ import movieMarkup from '../templates/movie__card.hbs';
 import { navigate } from '../lib/Router';
 import localStorage from '../lib/storage';
 
+const ATTR_NAME = 'data-name';
+const KEY_WATCHED = 'watchedArr';
+const KEY_QUEUE = 'queueArr';
+
 const init = async (params, query) => {
   //console.log(params);
   //console.log(`params: ${query}`);
@@ -14,41 +18,40 @@ const init = async (params, query) => {
 
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', baseMarkup());
-  const Resfs = {
+  const refs = {
     header: duffElem.querySelector('.header'),
     main: duffElem.querySelector('.main'),
   };
+  refs.header.classList.add('header__img-details');
+  refs.header.querySelector('.form-search').remove();
 
-  Resfs.main.insertAdjacentHTML('beforeend', movieMarkup(data));
-  Resfs.header.classList.add('header__img-details');
-  Resfs.header.querySelector('.form-search').remove();
+  refs.main.insertAdjacentHTML('beforeend', movieMarkup(data));
+  refs.watchedButton = duffElem.querySelector('.action__watched');
+  refs.queueButton = duffElem.querySelector('.action__queue');
 
-  const refs = {
-    watchedButton: duffElem.querySelector('.action__watched'),
-    queueButton: duffElem.querySelector('.action__queue'),
-  };
-
-  const attrName = 'data-name';
-
-  const watchedAttribute = refs.watchedButton.getAttribute(attrName);
-  const queueAttribute = refs.queueButton.getAttribute(attrName);
+  //нет смысла вешать одинаковый атрибут на 2 кнопки 1 раз повесить на movie_card и брать оттуда
+  //так же логичнее назвать filmID ведь не имя а айдишник. на кнопки лучше довесить атрибуты
+  //в который записать ключи по которым обращаться в локалсторедж тогда на 2 кнопки будет 1 обработчик
+  const watchedAttribute = refs.watchedButton.getAttribute(ATTR_NAME);
+  const queueAttribute = refs.queueButton.getAttribute(ATTR_NAME);
 
   const ls = new localStorage();
-
-  if (ls.checkDataInLocalStorage('action__watched', watchedAttribute)) {
-    // debugger;
-
+  debugger;
+  if (ls.checkDataInLocalStorage(KEY_WATCHED, watchedAttribute)) {
     refs.watchedButton.classList.add('active');
-  } else {
-    refs.watchedButton.classList.remove('active');
   }
+  // не имеет смысла как как в момент генерации данные летят из шаблона а там нет класса active
+  // else {
+  //   refs.watchedButton.classList.remove('active');
+  // }
 
-  if (ls.checkDataInLocalStorage('action__queue', queueAttribute)) {
+  if (ls.checkDataInLocalStorage(KEY_QUEUE, queueAttribute)) {
     refs.queueButton.classList.add('active');
-  } else {
-    refs.queueButton.classList.remove('active');
   }
-
+  //аналогично
+  // else {
+  //   refs.queueButton.classList.remove('active');
+  // }
   return duffElem.innerHTML;
 };
 export default init;
