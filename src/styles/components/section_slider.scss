@@ -67,7 +67,11 @@
 }
 .slider_item {
   margin-right: 30px;
-  transform: translateX(-2000px);
+  transform: translateX(-750px);
+}
+.slider_item img {
+  width: auto;
+  height: 300px;
 }
 .slider__lists {
   position: relative;
