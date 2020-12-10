@@ -2,7 +2,7 @@
   style="background-image: url('https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/{{backdrop_path}}')">
   <div class="overlay"></div>
   <div class="container">
-    <div class="movie_card">
+    <div class="movie_card" data-filmID='{{id}}'>
       <div class="details-image">
         <img class="movie_poster" src="https://image.tmdb.org/t/p/w220_and_h330_face{{poster_path}}"
           {{!-- https://image.tmdb.org/t/p/w220_and_h330_face/sp4zXS3x4wHyL8wm8zLioiBrxuR.jpg --}}
@@ -36,9 +36,9 @@
           {{overview}}
         </p>
         <form>
-          <button id="action__watched" class="button-action action__watched" data-name='{{id}}'>add to
+          <button id="action__watched" class="button-action action__watched" data-lsKeys='watchedKey'>add to
             watched</button>
-          <button id="action__queue" class="button-action action__queue" data-name='{{id}}'>add to queue</button>
+          <button id="action__queue" class="button-action action__queue" data-lsKeys='queueKey'>add to queue</button>
         </form>
       </div>
     </div>

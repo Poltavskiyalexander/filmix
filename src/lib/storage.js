@@ -28,7 +28,7 @@ export default class storage {
   addDataToLocalStorage(key, dataToAdd) {
     if (this.has(key)) {
       const allValues = this.get(key);
-      // console.log(allId);
+
       if (allValues.includes(dataToAdd)) {
         return;
       } else {
@@ -43,7 +43,7 @@ export default class storage {
   checkDataInLocalStorage(key, value) {
     if (this.has(key)) {
       const allValues = this.get(key);
-      return true;
+      return allValues.includes(value);
     } else {
       return false;
     }
@@ -56,8 +56,7 @@ export default class storage {
     console.log(indexOfChosenData);
 
     const newArr = allValues.splice(indexOfChosenData, 1);
-    this.set(ID_VALUE, allValues);
+    this.set(key, allValues);
     console.log(allValues);
   }
 }
-//обращение через зис
