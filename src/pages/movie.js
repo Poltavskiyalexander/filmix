@@ -70,6 +70,6 @@ export const addEventHandlers = () => {
     .addEventListener('click', buttonClickHandler);
 
   document
-    .querySelector('action__queue')
+    .querySelector('.action__queue') // поставила точку (АТ)
     .addEventListener('click', buttonClickHandler);
 };

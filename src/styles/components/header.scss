@@ -10,18 +10,25 @@
   opacity: 0;
 }
 ///////////////////////////not-found///////////////////////////////
-.not_found-banner {
-  height: 500px;
+// .not_found {
+//   display: flex;
+//   flex-direction: column;
+// }
+
+.not_found-banner img {
+  // flex: 1 1 auto;
+  height: auto;
   width: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url('../../src/images/not-found.png');
+  // background-size: cover;
+  // background-position: center;
+  // background-repeat: no-repeat;
+  // background-image: url('../../src/images/err.png');
 }
 
 ////////////////////header//////////////////////////////
 
 .header {
+  margin-bottom: 60px;
   text-align: center;
   height: 230px;
   background-color: color(primary-text);
@@ -43,7 +50,7 @@
     // max-width: 882px;
     margin: 0 auto;
     padding-top: 50px;
-    padding-bottom: 45px;
+    padding-bottom: 15px;
   }
 
   &__link {
@@ -92,9 +99,9 @@
 }
 
 @include media-query(medium) {
-  // .header {
-  //   margin-bottom: 20px;
-  // }
+  .header {
+    margin-bottom: 20px;
+  }
 
   .header__logoName {
     display: none;
@@ -102,6 +109,62 @@
 
   .header__navList > li:first-child {
     margin-right: 15px;
+  }
+}
+/////////////////language/////////////////////
+.header__language {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 20px;
+  padding-right: 40px;
+}
+
+.header__languageBtn-ru,
+.header__languageBtn-en,
+.header__languageBtn-uk {
+  border: none;
+  outline: none;
+  font-family: $primary-font-stack;
+  font-size: $headings-size;
+  font-weight: $regular-font-size;
+  cursor: pointer;
+  color: color(primary);
+  background-color: transparent;
+  border: color(primary) 1.5px solid;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-size: cover;
+}
+.header__languageBtn-ru {
+  background-image: url('http://ecoenergocom.com.ua/filmix/flag-ru.jpg');
+}
+.header__languageBtn-en {
+  background-image: url('http://ecoenergocom.com.ua/filmix/flag-en.jpg');
+}
+.header__languageBtn-uk {
+  background-image: url('http://ecoenergocom.com.ua/filmix/flag-uk.jpg');
+}
+
+.header__languageBtn-ru:hover {
+  border: color(secondary) 2px solid;
+}
+.header__languageBtn-en:hover {
+  border: color(secondary) 2px solid;
+}
+.header__languageBtn-uk:hover {
+  border: color(secondary) 2px solid;
+}
+.active-language {
+  border: color(secondary) 2px solid;
+}
+.header__language li {
+  margin-right: 5px;
+}
+@include media-query(medium) {
+  .header__language {
+    padding-right: 15px;
   }
 }
 
