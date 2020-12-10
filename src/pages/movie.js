@@ -3,10 +3,13 @@ import baseMarkup from '../components/basemarkup';
 import movieMarkup from '../templates/movie__card.hbs';
 import { navigate } from '../lib/Router';
 import localStorage from '../lib/storage';
+import storage from '../lib/storage';
+import { doc } from 'prettier';
 
-const ATTR_NAME = 'data-name';
-const KEY_WATCHED = 'watchedArr';
-const KEY_QUEUE = 'queueArr';
+const ATTR_NAME = 'data-filmID';
+const ATTR_LS_KEY = 'data-lsKeys';
+const KEY_WATCHED = 'watchedKey';
+const KEY_QUEUE = 'queueKey';
 
 const init = async (params, query) => {
   //console.log(params);
@@ -29,39 +32,74 @@ const init = async (params, query) => {
   refs.watchedButton = duffElem.querySelector('.action__watched');
   refs.queueButton = duffElem.querySelector('.action__queue');
 
+  refs.movieCard = duffElem.querySelector('.movie_card');
+
   //нет смысла вешать одинаковый атрибут на 2 кнопки 1 раз повесить на movie_card и брать оттуда
   //так же логичнее назвать filmID ведь не имя а айдишник. на кнопки лучше довесить атрибуты
   //в который записать ключи по которым обращаться в локалсторедж тогда на 2 кнопки будет 1 обработчик
-  const watchedAttribute = refs.watchedButton.getAttribute(ATTR_NAME);
-  const queueAttribute = refs.queueButton.getAttribute(ATTR_NAME);
+  const watchedAttribute = refs.watchedButton.getAttribute(ATTR_LS_KEY);
+  const queueAttribute = refs.queueButton.getAttribute(ATTR_LS_KEY);
+  const movieCardAttribute = refs.movieCard.getAttribute(ATTR_NAME);
 
   const ls = new localStorage();
-  debugger;
-  if (ls.checkDataInLocalStorage(KEY_WATCHED, watchedAttribute)) {
-    refs.watchedButton.classList.add('active');
-  }
-  // не имеет смысла как как в момент генерации данные летят из шаблона а там нет класса active
-  // else {
-  //   refs.watchedButton.classList.remove('active');
-  // }
 
-  if (ls.checkDataInLocalStorage(KEY_QUEUE, queueAttribute)) {
-    refs.queueButton.classList.add('active');
+  if (ls.checkDataInLocalStorage(KEY_WATCHED, movieCardAttribute)) {
+    refs.watchedButton.classList.add('active');
+    refs.watchedButton.innerHTML = 'ADDED TO WATCHED';
   }
-  //аналогично
-  // else {
-  //   refs.queueButton.classList.remove('active');
-  // }
+
+  if (ls.checkDataInLocalStorage(KEY_QUEUE, movieCardAttribute)) {
+    refs.queueButton.classList.add('active');
+    refs.queueButton.innerHTML = 'ADDED TO QUEUE';
+  }
+
   return duffElem.innerHTML;
 };
 export default init;
 
 const buttonClickHandler = event => {
+  // debugger;
   event.preventDefault();
+  const ls = new storage();
+
   const buttonRef = event.target;
-  // if (buttonRef.innerHTML = )
-  buttonRef.classList.add('active');
-  buttonRef.innerHTML('');
+  const buttonAttrValue = buttonRef.getAttribute('data-lskeys');
+
+  const movieCardAttribute = document
+    .querySelector('.movie_card')
+    .getAttribute(ATTR_NAME);
+
+  if (ls.checkDataInLocalStorage(buttonAttrValue, movieCardAttribute)) {
+    // debugger;
+    ls.removeDataFromLocalStorage(buttonAttrValue, movieCardAttribute);
+    buttonRef.classList.remove('active');
+    if (buttonAttrValue === 'queueKey') {
+      buttonRef.innerHTML = 'ADD TO QUEUE';
+    } else {
+      buttonRef.innerHTML = 'ADD TO WATCH';
+    }
+  } else {
+    ls.addDataToLocalStorage(buttonAttrValue, movieCardAttribute);
+    buttonRef.classList.add('active');
+    if (buttonAttrValue === 'queueKey') {
+      buttonRef.innerHTML = 'ADDED TO QUEUE';
+    } else {
+      buttonRef.innerHTML = 'ADDED TO WATCH';
+    }
+  }
+
+  //   //
+  // if (buttonRef.hasAttribute('data-lskeys')) // есть ли конкретно этот фильм по этому ключу{
+  //   ls.addDataToLocalStorage(buttonAttrValue, movieCardAttribute);
+  // }
+
+  // if (buttonAttrValue === 'queueKey') {
+  //   buttonRef.innerHTML = 'ADDED TO QUEUE';
+  //   buttonRef.classList.add('active');
+  // } else {
+  //   buttonRef.innerHTML = 'ADDED TO WATCHED';
+  //   buttonRef.classList.add('active');
+  // }
 };
 
 export const addEventHandlers = () => {
@@ -70,6 +108,6 @@ export const addEventHandlers = () => {
     .addEventListener('click', buttonClickHandler);
 
   document
-    .querySelector('action__queue')
+    .querySelector('.action__queue')
     .addEventListener('click', buttonClickHandler);
 };
