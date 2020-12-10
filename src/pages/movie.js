@@ -21,7 +21,7 @@ const init = async (params, query) => {
 
   Resfs.main.insertAdjacentHTML('beforeend', movieMarkup(data));
   Resfs.header.classList.add('header__img-details');
-  Resfs.header.querySelector('.form-search').remove();
+  Resfs.header.querySelector('.form-search-library').remove();
 
   const refs = {
     watchedButton: duffElem.querySelector('.action__watched'),
@@ -67,6 +67,6 @@ export const addEventHandlers = () => {
     .addEventListener('click', buttonClickHandler);
 
   document
-    .querySelector('action__queue')
+    .querySelector('.action__queue') // поставила точку (АТ)
     .addEventListener('click', buttonClickHandler);
 };

@@ -4,6 +4,7 @@ import { navigate } from '../lib/Router';
 import Build from '../lib/Data-builder';
 import { paginationDekstop, paginationMobile } from '../components/pagination';
 import sliderMurkup from '../templates/section_slider.hbs';
+import localStorage from '../lib/storage';
 
 const init = async (params, query) => {
   //console.log(`params: ${params}`);
@@ -80,4 +81,33 @@ export const addEventHandlers = () => {
   // }
   // mediaQuery.addListener(handleTabletChange);
   // handleTabletChange(mediaQuery);
+};
+
+export const addLanguageEventHandlers = () => {
+  const ls = new localStorage();
+
+  document
+    .querySelector('.header__languageBtn-ru')
+    .addEventListener('click', event => {
+      event.preventDefault();
+      ls.set('language', 'ru');
+      console.log(ls.get('language'));
+      window.location.reload();
+    });
+
+  document
+    .querySelector('.header__languageBtn-en')
+    .addEventListener('click', event => {
+      ls.set('language', 'en-US');
+      console.log(ls.get('language'));
+      window.location.reload();
+    });
+
+  document
+    .querySelector('.header__languageBtn-uk')
+    .addEventListener('click', event => {
+      ls.set('language', 'uk');
+      console.log(ls.get('language'));
+      window.location.reload();
+    });
 };
