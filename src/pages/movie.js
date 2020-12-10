@@ -1,6 +1,7 @@
 import medb from '../lib/ApiMEDB';
 import baseMarkup from '../components/basemarkup';
-import movieMarkup from '../templates/movie__card.hbs';
+import movieTemplate from '../templates/movie__card.hbs';
+import trailerTemplate from '../templates/trailer__card.hbs';
 import { navigate } from '../lib/Router';
 import localStorage from '../lib/storage';
 
@@ -14,7 +15,10 @@ const init = async (params, query) => {
   //debugger;
 
   const data = await medb.getFilmsId(params.id);
-  console.log(data);
+  // console.log(data);
+
+  const trailer = await medb.getMovies(params.id);
+  console.log(trailer.results);
 
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', baseMarkup());
@@ -25,7 +29,8 @@ const init = async (params, query) => {
   refs.header.classList.add('header__img-details');
   refs.header.querySelector('.form-search').remove();
 
-  refs.main.insertAdjacentHTML('beforeend', movieMarkup(data));
+  refs.main.insertAdjacentHTML('beforeend', movieTemplate(data));
+  refs.main.insertAdjacentHTML('beforeend', trailerTemplate(trailer.results));
   refs.watchedButton = duffElem.querySelector('.action__watched');
   refs.queueButton = duffElem.querySelector('.action__queue');
 
@@ -36,7 +41,7 @@ const init = async (params, query) => {
   const queueAttribute = refs.queueButton.getAttribute(ATTR_NAME);
 
   const ls = new localStorage();
-  debugger;
+  // debugger;
   if (ls.checkDataInLocalStorage(KEY_WATCHED, watchedAttribute)) {
     refs.watchedButton.classList.add('active');
   }
