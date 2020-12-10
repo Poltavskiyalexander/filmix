@@ -78,7 +78,16 @@ export const addEventHandlers = () => {
   document
     .querySelector('input[name="text"]')
     .addEventListener('click', hideErrorHandler);
+  const ls = new localStorage();
 
+  document.querySelectorAll('.header__language button').forEach(btn => {
+    btn.addEventListener('click', event => {
+      event.preventDefault();
+      ls.set('language', btn.dataset.language);
+      console.log(ls.get('language'));
+      window.location.reload();
+    });
+  });
   // const mediaQuery = window.matchMedia('(min-width: 768px)');
   // function handleTabletChange(e) {
   //   if (e.matches) {
@@ -91,31 +100,37 @@ export const addEventHandlers = () => {
   // handleTabletChange(mediaQuery);
 };
 
-export const addLanguageEventHandlers = () => {
-  const ls = new localStorage();
+// export const addLanguageEventHandlers = () => {
+//   const ls = new localStorage();
 
-  document
-    .querySelector('.header__languageBtn-ru')
-    .addEventListener('click', event => {
-      event.preventDefault();
-      ls.set('language', 'ru');
-      console.log(ls.get('language'));
-      window.location.reload();
-    });
+//   document.querySelectorAll('.header__language button').forEach(btn => {
+//     btn.addEventListener('click', event => {
+//       event.preventDefault();
+//       ls.set('language', btn.dataset.language);
+//       console.log(ls.get('language'));
+//       window.location.reload();
+//     });
+//   });
+// .addEventListener('click', event => {
+//   event.preventDefault();
+//   ls.set('language', 'ru');
+//   console.log(ls.get('language'));
+//   window.location.reload();
+// });
 
-  document
-    .querySelector('.header__languageBtn-en')
-    .addEventListener('click', event => {
-      ls.set('language', 'en-US');
-      console.log(ls.get('language'));
-      window.location.reload();
-    });
+// document
+//   .querySelector('.header__languageBtn-en')
+//   .addEventListener('click', event => {
+//     ls.set('language', 'en-US');
+//     console.log(ls.get('language'));
+//     window.location.reload();
+//   });
 
-  document
-    .querySelector('.header__languageBtn-uk')
-    .addEventListener('click', event => {
-      ls.set('language', 'uk');
-      console.log(ls.get('language'));
-      window.location.reload();
-    });
-};
+// document
+//   .querySelector('.header__languageBtn-uk')
+//   .addEventListener('click', event => {
+//     ls.set('language', 'uk');
+//     console.log(ls.get('language'));
+//     window.location.reload();
+//   });
+// };
