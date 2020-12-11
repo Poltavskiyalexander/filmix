@@ -115,4 +115,10 @@ export const addEventHandlers = () => {
   document
     .querySelector('.action__queue')
     .addEventListener('click', buttonClickHandler);
+  document
+    .querySelector('.action__queue')
+    .addEventListener('click', buttonClickHandler);
+  document
+    .querySelector('.action__queue')
+    .addEventListener('click', buttonClickHandler);
 };

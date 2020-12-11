@@ -29,7 +29,7 @@ const initRouter = () => {
   router
     .on({
       '/': () => {
-        debugger;
+        // debugger;
         navigate('/');
         RenderComponent(initHomePage).then(() => {
           addHomePageEventHandlers();

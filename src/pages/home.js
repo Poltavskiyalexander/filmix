@@ -4,6 +4,7 @@ import sliderMarkup from '../components/slider';
 import { navigate } from '../lib/Router';
 import Build from '../lib/Data-builder';
 import { paginationDekstop, paginationMobile } from '../components/pagination';
+import sliderMurkup from '../templates/section_slider.hbs';
 import localStorage from '../lib/storage';
 
 const init = async (params, query) => {
@@ -28,7 +29,7 @@ const init = async (params, query) => {
   //console.log(data);
   //console.log(genresArr);
   //console.log(results);
-  console.log(sliderResults);
+  //console.log(sliderResults);
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', baseMarkup(results, 'home?'));
   const resfs = {
@@ -77,33 +78,14 @@ export const addEventHandlers = () => {
   document
     .querySelector('input[name="text"]')
     .addEventListener('click', hideErrorHandler);
-};
-
-export const addLanguageEventHandlers = () => {
   const ls = new localStorage();
 
-  document
-    .querySelector('.header__languageBtn-ru')
-    .addEventListener('click', event => {
+  document.querySelectorAll('.header__language button').forEach(btn => {
+    btn.addEventListener('click', event => {
       event.preventDefault();
-      ls.set('language', 'ru');
+      ls.set('language', btn.dataset.language);
       console.log(ls.get('language'));
       window.location.reload();
     });
-
-  document
-    .querySelector('.header__languageBtn-en')
-    .addEventListener('click', event => {
-      ls.set('language', 'en-US');
-      console.log(ls.get('language'));
-      window.location.reload();
-    });
-
-  document
-    .querySelector('.header__languageBtn-uk')
-    .addEventListener('click', event => {
-      ls.set('language', 'uk');
-      console.log(ls.get('language'));
-      window.location.reload();
-    });
+  });
 };

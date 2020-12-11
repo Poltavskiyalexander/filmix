@@ -1,5 +1,26 @@
 <header class="header">
     <div class="container">
+        <div class="header__checkbox">
+            <ul class="header__language">
+                <li>
+                    <button class="header__languageBtn-ru" data-language="ru">ru</button>
+                </li>
+                <li>
+                    <button class="header__languageBtn-en" data-language="en-US">en</button>
+                </li>
+                <li>
+                    <button class="header__languageBtn-uk" data-language="uk">uk</button>
+                </li>
+            </ul>
+
+            <input type="checkbox" class="checkbox" id="chk" />
+            <label class="label" for="chk">
+                <p class="fas fa-moon"></p>
+                <p class="fas fa-sun"></p>
+                <div class="ball"></div>
+            </label>
+        </div>
+
         <div class="header__content">
             <div class="logo">
                 <a class="header__link" href="#">
@@ -37,19 +58,19 @@
                 </ul>
             </nav>
         </div>
-        <div>
+        {{!-- <div>
             <ul class="header__language">
                 <li>
-                    <button class="header__languageBtn-ru">ru</button>
+                    <button class="header__languageBtn-ru" data-language="ru">ru</button>
                 </li>
                 <li>
-                    <button class="header__languageBtn-en">en</button>
+                    <button class="header__languageBtn-en" data-language="en-US">en</button>
                 </li>
                 <li>
-                    <button class="header__languageBtn-uk">uk</button>
+                    <button class="header__languageBtn-uk" data-language="uk">uk</button>
                 </li>
             </ul>
-        </div>
+        </div> --}}
         <div class="search__myFilmLibraryPage">
             <div class="form-search-library">
                 <form class="form-search">
