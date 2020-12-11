@@ -1,5 +1,6 @@
 import Navigo from 'navigo';
 import RenderComponent from './Component';
+import { addEventHandlers as pag } from '../components/pagination';
 
 import initHomePage, {
   addEventHandlers as addHomePageEventHandlers,
@@ -28,19 +29,21 @@ const initRouter = () => {
   router
     .on({
       '/': () => {
-        // debugger;
+        debugger;
         navigate('/');
         RenderComponent(initHomePage).then(() => {
           addHomePageEventHandlers();
           addLanguageEventHandlers();
+          pag();
         });
       },
       '/:action': (params, query) => {
-        // debugger;
+        //debugger;
         if (params.action === 'home') {
           RenderComponent(initHomePage, params, query).then(() => {
             addHomePageEventHandlers();
             addLanguageEventHandlers();
+            pag();
           });
           return;
         }

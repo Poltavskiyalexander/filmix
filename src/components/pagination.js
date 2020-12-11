@@ -1,6 +1,9 @@
 import templateSectionPagination from '../templates/section__pagination.hbs';
 import paginationList from '../templates/navigation_list.hbs';
 
+const MEDIA_Medium = 768;
+const MEDIA_MediumQuery = `(max-width: ${MEDIA_Medium - 1}px)`;
+
 const paginationInit = (obj, url) => {
   const { page, total_pages: totalPages } = obj;
   const buffElem = document.createElement('div');
@@ -12,58 +15,46 @@ const paginationInit = (obj, url) => {
   let rightArrow = buffElem.querySelector('.numpage__right-arrow');
   let leftArrow = buffElem.querySelector('.numpage__left-arrow');
 
-  // ////////////////////////////////     ВЕРСИЯ ПОД МОБИЛУ     ///////////////////////////////////////
+  if (totalPages <= 1) {
+    parentList.remove();
+  }
+  if (page === totalPages) {
+    rightArrow.remove();
+  } else {
+    rightArrow
+      .querySelector('.arrow')
+      .setAttribute('href', `/${url}page=${page + 1}`);
+  }
+  if (page === 1) {
+    leftArrow.remove();
+  } else {
+    leftArrow
+      .querySelector('.arrow')
+      .setAttribute('href', `/${url}page=${page - 1}`);
+  }
 
-  const paginationMobile = function () {
-    if (totalPages <= 1) {
-      parentList.remove();
-    }
-    if (totalPages > 1) {
+  if (totalPages > 1) {
+    if (window.matchMedia(MEDIA_MediumQuery).matches) {
+      //логика мобильной пагинации
       for (let i = page - 2; i <= page + 2 && i <= totalPages; i++) {
         if (i >= 1) {
-          let str = paginationList({ page: i, url, more: true });
-
-          lists.insertAdjacentHTML('beforeend', str);
+          lists.insertAdjacentHTML(
+            'beforeend',
+            paginationList({ page: i, url, more: true }),
+          );
         }
       }
-
-      const itemsRefs = buffElem.querySelectorAll('.numpage__list-item');
-
-      itemsRefs.forEach(element => {
-        element.textContent == page
-          ? element.classList.add('item__border-active')
-          : null;
-      });
-    }
-    if (page === totalPages) {
-      rightArrow.remove();
-    }
-    if (page === 1) {
-      leftArrow.remove();
-    }
-  };
-
-  paginationMobile();
-
-  // ////////////////////////////////     ВЕРСИЯ ПОД ДЕКСТОП     ///////////////////////////////////////
-
-  const paginationDekstop = function () {
-    if (totalPages <= 1) {
-      parentList.remove();
-    }
-
-    const max = 9;
-    if (totalPages > 1) {
+    } else {
+      //логика таблетки и выше
       lists.insertAdjacentHTML(
         'beforeend',
         paginationList({ page: 1, url, more: true, class: 'media-hidden' }),
       );
 
       for (let i = page - 3; i <= page + 3; i++) {
-        let str = paginationList({ page: i, url, more: true });
         if (i <= 1 || i >= totalPages) {
         } else {
-          if (i === page - 3) {
+          if (i === page - 3 || i === page + 3) {
             lists.insertAdjacentHTML(
               'beforeend',
               paginationList({
@@ -73,22 +64,18 @@ const paginationInit = (obj, url) => {
                 more: false,
               }),
             );
-          } else if (i === page + 3) {
+          } else {
             lists.insertAdjacentHTML(
               'beforeend',
               paginationList({
-                class: 'numpage__more  media-hidden',
-                page: '...',
+                page: i,
                 url,
-                more: false,
+                more: true,
               }),
             );
-          } else {
-            lists.insertAdjacentHTML('beforeend', str);
           }
         }
       }
-
       lists.insertAdjacentHTML(
         'beforeend',
         paginationList({
@@ -98,90 +85,31 @@ const paginationInit = (obj, url) => {
           class: 'media-hidden',
         }),
       );
-      const itemsRefs = buffElem.querySelectorAll('.numpage__list-item');
-
-      itemsRefs.forEach(element => {
-        element.textContent == page
-          ? element.classList.add('item__border-active')
-          : null;
-      });
     }
-    if (page === totalPages) {
-      rightArrow.remove();
+  }
+
+  const itemsRefs = buffElem.querySelectorAll('.numpage__list-item');
+  itemsRefs.forEach(element => {
+    if (element.textContent == page) {
+      element.classList.add('item__border-active');
+      element.dataset.total = totalPages;
     }
-    if (page === 1) {
-      leftArrow.remove();
-    }
-  };
-  // paginationDekstop();
-
-  // ....................................ЗАКОНТИРОВАННЫЙ СТАРЫЙ КОД....................................
-
-  // if (totalPages <= 1) {
-  //   parentList.remove();
-  // }
-
-  // const max = 9;
-  // if (totalPages > 1) {
-  //   lists.insertAdjacentHTML(
-  //     'beforeend',
-  //     paginationList({ page: 1, url, more: true, class: 'media-hidden' }),
-  //   );
-
-  //   for (let i = page - 3; i <= page + 3; i++) {
-  //     let str = paginationList({ page: i, url, more: true });
-  //     if (i <= 1 || i >= totalPages) {
-  //     } else {
-  //       if (i === page - 3) {
-  //         lists.insertAdjacentHTML(
-  //           'beforeend',
-  //           paginationList({
-  //             class: 'numpage__more media-hidden',
-  //             page: '...',
-  //             url,
-  //             more: false,
-  //           }),
-  //         );
-  //       } else if (i === page + 3) {
-  //         lists.insertAdjacentHTML(
-  //           'beforeend',
-  //           paginationList({
-  //             class: 'numpage__more  media-hidden',
-  //             page: '...',
-  //             url,
-  //             more: false,
-  //           }),
-  //         );
-  //       } else {
-  //         lists.insertAdjacentHTML('beforeend', str);
-  //       }
-  //     }
-  //   }
-
-  //   lists.insertAdjacentHTML(
-  //     'beforeend',
-  //     paginationList({
-  //       page: totalPages,
-  //       url,
-  //       more: true,
-  //       class: 'media-hidden',
-  //     }),
-  //   );
-  //   const itemsRefs = buffElem.querySelectorAll('.numpage__list-item');
-
-  //   itemsRefs.forEach(element => {
-  //     element.textContent == page
-  //       ? element.classList.add('item__border-active')
-  //       : null;
-  //   });
-  // }
-  // if (page === totalPages) {
-  //   rightArrow.remove();
-  // }
-  // if (page === 1) {
-  //   leftArrow.remove();
-  // }
-
+  });
   return buffElem.innerHTML;
 };
+
 export default paginationInit;
+
+export const addEventHandlers = () => {
+  const mediaQuery = window.matchMedia(MEDIA_MediumQuery);
+  mediaQuery.addListener(event => {
+    paginationRef = document.querySelector('.pagination');
+    pageRef = paginationRef.querySelector('.item__border-active');
+    if (pageRef) {
+      paginationRef.querySelector('numpage__lists').innerHTML = paginationInit({
+        page: pageRef.textContent,
+        total_pages: pageRef.dataset.totalPages,
+      });
+    }
+  });
+};

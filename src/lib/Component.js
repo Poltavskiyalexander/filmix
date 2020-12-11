@@ -7,7 +7,6 @@ const RenderComponent = async (
   query = null,
   rootElementSelector = ROOT_ELEMENT_SELECTOR,
 ) => {
-  // debugger;
   const rootElement = document.querySelector(rootElementSelector);
   const template = await renderFunction(params, query);
   rootElement.innerHTML = template;
@@ -15,12 +14,11 @@ const RenderComponent = async (
 };
 
 const linkClickHandler = event => {
-  if (
-    event.target.nodeName === 'A' &&
-    event.target.getAttribute('href').substr(0, 1) === '/'
-  ) {
+  //debugger;
+  const aRef = event.target.closest('a');
+  if (aRef && aRef.getAttribute('href').substr(0, 1) === '/') {
     event.preventDefault();
-    navigate(event.target.getAttribute('href'));
+    navigate(aRef.getAttribute('href'));
   }
 };
 

@@ -4,7 +4,6 @@ import sliderMarkup from '../components/slider';
 import { navigate } from '../lib/Router';
 import Build from '../lib/Data-builder';
 import { paginationDekstop, paginationMobile } from '../components/pagination';
-import sliderMurkup from '../templates/section_slider.hbs';
 import localStorage from '../lib/storage';
 
 const init = async (params, query) => {
@@ -78,17 +77,6 @@ export const addEventHandlers = () => {
   document
     .querySelector('input[name="text"]')
     .addEventListener('click', hideErrorHandler);
-
-  // const mediaQuery = window.matchMedia('(min-width: 768px)');
-  // function handleTabletChange(e) {
-  //   if (e.matches) {
-  //     paginationMobile();
-  //   } else {
-  //     paginationDekstop();
-  //   }
-  // }
-  // mediaQuery.addListener(handleTabletChange);
-  // handleTabletChange(mediaQuery);
 };
 
 export const addLanguageEventHandlers = () => {
