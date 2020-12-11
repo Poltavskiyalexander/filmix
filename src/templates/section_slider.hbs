@@ -1,5 +1,5 @@
 <section id="slider">
-    <div class="container">
+    <div class="slider_container">
         <div class="slider_body">
 
             <div class="slider__btn"><a class=" slider-arrow slider_arrow-left" href="#"><svg class="arrow-left"
@@ -13,9 +13,10 @@
 
                 <ul class="slider__lists">
                     {{#each this}}
-                    <li class="slider_item"><a href="#"><img
+                    <li class="slider_item"><a href="#"><img class="item "
                                 src="https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/{{backdrop_path}}"
-                                alt=""></a></li>
+                                alt=""></a>
+                    </li>
                     {{/each}}
                 </ul>
 

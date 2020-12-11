@@ -8,7 +8,7 @@ const init = data => {
   duffElem.getElementsByClassName('left').onclick = slideClick;
   function slideClick() {
     const polosa = duffElem.getElementsByClassName('slider__lists');
-    polosa.style.left = -800 + 'px';
+    polosa.style.left = -900 + 'px';
   }
 
   return duffElem.innerHTML;
