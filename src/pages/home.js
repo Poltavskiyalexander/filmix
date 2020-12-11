@@ -28,7 +28,7 @@ const init = async (params, query) => {
   //console.log(data);
   //console.log(genresArr);
   //console.log(results);
-  //console.log(sliderResults);
+  console.log(sliderResults);
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', baseMarkup(results, 'home?'));
   const resfs = {
