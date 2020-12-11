@@ -4,7 +4,6 @@ import { addEventHandlers as pag } from '../components/pagination';
 
 import initHomePage, {
   addEventHandlers as addHomePageEventHandlers,
-  addLanguageEventHandlers,
 } from '../pages/home';
 import initLibrary, {
   addEventHandlers as addLibraryPageEventHandlers,
@@ -33,7 +32,7 @@ const initRouter = () => {
         navigate('/');
         RenderComponent(initHomePage).then(() => {
           addHomePageEventHandlers();
-          addLanguageEventHandlers();
+          //addLanguageEventHandlers();
           pag();
         });
       },
@@ -42,7 +41,7 @@ const initRouter = () => {
         if (params.action === 'home') {
           RenderComponent(initHomePage, params, query).then(() => {
             addHomePageEventHandlers();
-            addLanguageEventHandlers();
+            //addLanguageEventHandlers();
             pag();
           });
           return;
@@ -50,24 +49,24 @@ const initRouter = () => {
         if (params.action === 'search') {
           RenderComponent(initSearchPage, params, query).then(() => {
             addSearchPageEventHandlers();
-            addLanguageEventHandlers();
+            //addLanguageEventHandlers();
           });
           return;
         }
         RenderComponent(initNotFound).then(() => {
           addNotFoundPageEventHandlers();
-          addLanguageEventHandlers();
+          //addLanguageEventHandlers();
         });
       },
       '/movie/:id': (params, query) => {
         // debugger;
         RenderComponent(initMoviePage, params, query).then(() => {
           addMoviePageEventHandlers();
-          addLanguageEventHandlers();
+          //addLanguageEventHandlers();
           return;
         });
         RenderComponent(initNotFound).then(() => {
-          addLanguageEventHandlers();
+          //addLanguageEventHandlers();
           addNotFoundPageEventHandlers();
         });
       },
@@ -76,13 +75,13 @@ const initRouter = () => {
         if (params.action === 'queu' || params.action === 'watched') {
           RenderComponent(initLibrary, params, query).then(() => {
             addLibraryPageEventHandlers();
-            addLanguageEventHandlers();
+            //addLanguageEventHandlers();
           });
           return;
         }
         RenderComponent(initNotFound).then(() => {
           addNotFoundPageEventHandlers();
-          addLanguageEventHandlers();
+          //addLanguageEventHandlers();
         });
       },
     })
@@ -90,7 +89,7 @@ const initRouter = () => {
       // debugger;
       RenderComponent(initNotFound).then(() => {
         addNotFoundPageEventHandlers();
-        addLanguageEventHandlers();
+        //addLanguageEventHandlers();
       });
     })
     .resolve();
