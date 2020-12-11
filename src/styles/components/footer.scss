@@ -1,6 +1,86 @@
 .footer {
   background-color: #f7f7f7;
 }
+.footer__networks-list {
+  display: flex;
+  justify-content: center;
+  // padding-top: 15px;
+}
+.footer__networks {
+  padding-top: 10px;
+}
+.footer__networks-name {
+  padding-top: 15px;
+  color: color(secondary-text);
+  text-align: center;
+  // text-transform: uppercase;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 22px;
+  line-height: 24px;
+  color: #545454;
+}
+.footer__networks-name::after {
+  content: '\261F';
+  font-family: $primary-font-stack;
+  font-size: $headings-size-big;
+  font-weight: $medium-font-size;
+  // display: block;
+  // width: auto;
+  // height: 2px;
+  // background-color: color(secondary);
+}
+
+.footer__networks-listName {
+  padding-bottom: 10px;
+  padding-right: 20px;
+}
+// .footer__networks-listLi {
+//   padding-top: 10px;
+// }
+.footer__networks-list > li:first-child {
+  margin-right: 10px;
+}
+
+.footer__networks-listLink-google,
+.footer__networks-listLink-app {
+  cursor: pointer;
+  // color: color(primary);
+  // text-transform: uppercase;
+  background-color: rgba(245, 142, 73, 0.8);
+  // border: color(description-text) 1px solid;
+  width: 136px;
+  height: 44px;
+  border: none;
+  outline: none;
+  background-size: cover;
+  border-radius: 10px;
+  background-position: center;
+}
+.footer__networks-listLink-google {
+  background-image: url('http://ecoenergocom.com.ua/filmix/google.png');
+}
+.footer__networks-listLink-app {
+  background-image: url('http://ecoenergocom.com.ua/filmix/appl.png');
+}
+// .footer__networks::before {
+//   content: '';
+//   display: block;
+//   width: auto;
+//   height: 2px;
+//   background-color: color(secondary);
+// }
+// .footer__networks::after {
+//   content: '';
+//   display: block;
+//   width: auto;
+//   height: 2px;
+//   background-color: color(secondary);
+//   margin-right: 70px;
+//   margin-left: 70px;
+// }
+
 .footer__main {
   display: flex;
   flex-wrap: wrap;
