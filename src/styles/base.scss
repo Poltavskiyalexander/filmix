@@ -7,6 +7,14 @@
 body {
   font-family: 'Roboto';
   color: #000000;
+  &.dark-theme {
+    background-color: #333333;
+    color: #fff;
+  }
+  &.light-theme {
+    background-color: #fff;
+    color: #333333;
+  }
 }
 
 .container {

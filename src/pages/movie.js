@@ -3,6 +3,7 @@ import localStorage from '../lib/storage';
 import storage from '../lib/storage';
 
 import baseMarkup from '../components/basemarkup';
+import { addEventHandlersAllPages } from '../components/EventHandlers';
 
 import movieTemplate from '../templates/movie__card.hbs';
 import trailerTemplate from '../templates/trailer__card.hbs';
@@ -30,7 +31,8 @@ const init = async (params, query) => {
     main: duffElem.querySelector('.main'),
   };
   refs.header.classList.add('header__img-details');
-  refs.header.querySelector('.form-search').remove();
+  duffElem.querySelector('.form-search-library').remove();
+  duffElem.querySelector('.search__navLibrary').remove();
 
   refs.main.insertAdjacentHTML('beforeend', movieTemplate(data));
   refs.main.insertAdjacentHTML('beforeend', trailerTemplate(trailer.results));
@@ -39,9 +41,6 @@ const init = async (params, query) => {
 
   refs.movieCard = duffElem.querySelector('.movie_card');
 
-  //нет смысла вешать одинаковый атрибут на 2 кнопки 1 раз повесить на movie_card и брать оттуда
-  //так же логичнее назвать filmID ведь не имя а айдишник. на кнопки лучше довесить атрибуты
-  //в который записать ключи по которым обращаться в локалсторедж тогда на 2 кнопки будет 1 обработчик
   const watchedAttribute = refs.watchedButton.getAttribute(ATTR_LS_KEY);
   const queueAttribute = refs.queueButton.getAttribute(ATTR_LS_KEY);
   const movieCardAttribute = refs.movieCard.getAttribute(ATTR_NAME);
@@ -108,6 +107,7 @@ const buttonClickHandler = event => {
 };
 
 export const addEventHandlers = () => {
+  addEventHandlersAllPages();
   document
     .querySelector('.action__watched')
     .addEventListener('click', buttonClickHandler);

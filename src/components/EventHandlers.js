@@ -1,19 +1,20 @@
 import storage from '../lib/storage';
-import { addEventHandlers as paginationEventHandlers } from './pagination.js';
 import medb from '../lib/ApiMEDB';
 import { navigate } from '../lib/Router';
+
+import { addEventHandlers as paginationEventHandlers } from './pagination.js';
+import themeСhange from './theme.js';
 
 export const addEventHandlersAllPages = () => {
   /**
    * Обработчики импортируемые при загрузке всех страниц
    */
-
+  const ls = new storage();
   const languageСhange = () => {
     /**
      * Отлавливаем клик по кнопке смены языка
      * и перезагружаем страницу меняя ее язык
      */
-    const ls = new storage();
     document
       .querySelector('.header__language')
       .addEventListener('click', event => {
@@ -26,6 +27,34 @@ export const addEventHandlersAllPages = () => {
         }
       });
   };
+
+  // const themeСhange = () => {
+  /**
+   * Отлавливаем клик по кнопке смены языка
+   * и перезагружаем страницу меняя ее язык
+   */
+  // const theme = {
+  //   LIGHT: 'light-theme',
+  //   DARK: 'dark-theme',
+  // };
+  // const keyTheme = 'Theme';
+  // const bodyRef = document.querySelector('body');
+  // debugger;
+  // bodyRef.querySelector('#chk').addEventListener('change', event => {
+  //   debugger;
+  //   console.log('++++++++');
+  //   const { target } = event;
+  //   if (bodyRef.classList.contains(theme.LIGHT)) {
+  //     bodyRef.classList.remove(theme.LIGHT);
+  //     bodyRef.classList.add(theme.DARK);
+  //     ls.setItem('keyTheme', Theme.DARK);
+  //   } else if (bodyRef.classList.contains(theme.DARK)) {
+  //     bodyRef.classList.remove(theme.DARK);
+  //     bodyRef.classList.add(theme.LIGHT);
+  //     ls.setItem('keyTheme', theme.LIGHT);
+  //   }
+  // });
+  // };
 
   const paginationHandlers = () => {
     /**
@@ -80,6 +109,8 @@ export const addEventHandlersAllPages = () => {
   };
 
   // Вызовы
+  // debugger;
+  themeСhange();
   languageСhange();
   paginationHandlers();
   searchHandlers();

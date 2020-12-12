@@ -1,4 +1,6 @@
 import baseMarkup from '../components/basemarkup';
+import { addEventHandlersAllPages } from '../components/EventHandlers';
+
 import templateNotFound from '../templates/not_found.hbs';
 
 const init = async () => {
@@ -16,4 +18,6 @@ const init = async () => {
 
 export default init;
 
-export const addEventHandlers = () => {};
+export const addEventHandlers = () => {
+  addEventHandlersAllPages();
+};

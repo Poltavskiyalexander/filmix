@@ -3,6 +3,7 @@ import templateSectionCards from '../templates/section__cards.hbs';
 import templateFooter from '../templates/footer.hbs';
 
 import pagination from './pagination';
+import theme from './theme';
 
 const init = (data = null, url = '#') => {
   const duffElem = document.createElement('div');
