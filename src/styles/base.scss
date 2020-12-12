@@ -33,3 +33,28 @@ body {
     flex: 0 0 auto;
   }
 }
+
+.back_to_top {
+  position: fixed;
+  bottom: 80px;
+  right: 40px;
+  z-index: 9999;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background: color(description-text);
+  color: color(primary);
+  cursor: pointer;
+  border-radius: 3px;
+  display: none;
+  opacity: 0.8;
+}
+
+.back_to_top:hover {
+  background: color(secondary);
+}
+
+.back_to_top-show {
+  display: block;
+}

@@ -140,6 +140,11 @@ iframe {
   outline: none;
 }
 
+.button-action:hover {
+  box-shadow: 0 5px 5px color(primary-text);
+  transform: translate(-2px, -2px);
+}
+
 .button-action:not(:last-child) {
   margin-right: 12px;
 }
