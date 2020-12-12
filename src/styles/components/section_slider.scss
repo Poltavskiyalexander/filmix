@@ -34,6 +34,7 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
+
   align-items: center;
 }
 
@@ -63,13 +64,38 @@
 }
 
 .slider__lists {
+  padding: 10px 0px;
   display: flex;
   justify-content: center;
-  background-color: color(secondary);
+  background-color: #1b1610;
 }
 .item {
   background-size: auto;
-  height: 200px;
-  border-radius: 20px;
-  padding: 10px 10px;
+  height: 250px;
+  padding: 15px 10px;
+  margin: 0 5px;
+  border-top: dashed 15px #fff;
+  border-bottom: dashed 15px #fff;
+  transform: translateX(-0px);
+}
+
+.slider_item {
+  & a {
+    position: relative;
+  }
+  & p {
+    position: absolute;
+    bottom: 50px;
+    left: 50px;
+    color: #fff;
+    font-size: 30px;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+  }
+  & p.slider_name_date {
+    position: absolute;
+    top: -300px;
+    right: -300px;
+  }
 }
