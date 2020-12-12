@@ -10,8 +10,17 @@
                                     alt="poster {{title}}" class="card__img-film" /></a>
                         </div>
                         <a class="card__overlay-text" href="#/movie/{{id}}">
-                            <p class="card__vote_average text-over">Vote: {{vote_average}}</p>
-                            <p class="card__popularity text-over">Popularity: {{popularity}}</p>
+                            <p class="card__vote_average text-over">{{vote_average}} / {{vote_count}}</p>
+                            {{!-- <p class="card__popularity text-over">Popularity: {{popularity}}</p> --}}
+                            <div class="reviews-container">
+                                <div class="review">
+                                    <span class="icon-container">{{popularity}} <i class="fa fa-star"></i></span>
+                                    <div class="progress">
+                                        <div class="progress-done" data-done="68"></div>
+                                    </div>
+                                    <span class="percent">68%</span>
+                                </div>
+                            </div>
                         </a>
                     </div>
                 </div>
