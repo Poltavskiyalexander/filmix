@@ -80,30 +80,20 @@ const buttonClickHandler = event => {
     if (buttonAttrValue === 'queueKey') {
       buttonRef.innerHTML = 'ADD TO QUEUE';
     } else {
-      buttonRef.innerHTML = 'ADD TO WATCH';
+      buttonRef.innerHTML = 'ADD TO WATCHED';
     }
   } else {
+    // проверяем, если есть такое же значение в другом ключе - удаляем class в старом и ставим в том, где нажали
     ls.addDataToLocalStorage(buttonAttrValue, movieCardAttribute);
     buttonRef.classList.add('active');
     if (buttonAttrValue === 'queueKey') {
       buttonRef.innerHTML = 'ADDED TO QUEUE';
     } else {
-      buttonRef.innerHTML = 'ADDED TO WATCH';
+      buttonRef.innerHTML = 'ADDED TO WATCHED';
     }
   }
 
-  //   //
-  // if (buttonRef.hasAttribute('data-lskeys')) // есть ли конкретно этот фильм по этому ключу{
-  //   ls.addDataToLocalStorage(buttonAttrValue, movieCardAttribute);
-  // }
-
-  // if (buttonAttrValue === 'queueKey') {
-  //   buttonRef.innerHTML = 'ADDED TO QUEUE';
-  //   buttonRef.classList.add('active');
-  // } else {
-  //   buttonRef.innerHTML = 'ADDED TO WATCHED';
-  //   buttonRef.classList.add('active');
-  // }
+  // if (ls.checkDataInLocalStorage(buttonAttrValue, movieCardAttribute) && )
 };
 
 export const addEventHandlers = () => {
