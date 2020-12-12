@@ -11,41 +11,30 @@
 }
 
 //////////////////////////checkbox///////////////////////////
-body.dark {
-  background: #292c35;
-}
 .header__checkbox {
-  display: flex;
-  justify-content: center;
+  @include center-flex-end-flex($type: 'all');
   padding-top: 20px;
 }
-
 .checkbox {
   opacity: 0;
   position: absolute;
 }
-
 .label {
-  background-color: #111;
+  @include center-space-around-flex($type: 'all');
+  background-color: color(primary-text);
   border-radius: 50px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
   padding: 5px;
   position: relative;
   height: 26px;
   width: 50px;
   border: color(primary) 1.5px solid;
-
-  // transform: scale(1.5);
 }
-
 .label:hover {
-  border: color(secondary) 1.5px solid;
+  border: color(secondary) 2px solid;
 }
 .label .ball {
-  background-color: #fff;
+  background-color: color(primary);
   border-radius: 50%;
   position: absolute;
   top: 1px;
@@ -54,47 +43,33 @@ body.dark {
   width: 20px;
   transform: translateX(0px);
   transition: transform 0.2s linear;
-  // border: color(secondary) 1.5px solid;
 }
-
 .checkbox:checked + .label .ball {
   transform: translateX(24px);
 }
-
 .fa-moon {
   font-weight: bold;
-  color: color(secondary);
+  color: color(primary);
 }
-
 .fa-sun {
-  color: color(secondary);
+  color: color(primary);
 }
 .fa-sun::before {
   content: '\2600';
 }
-
 .fa-moon::before {
   content: '\263E';
 }
-///////////////////////////not-found///////////////////////////////
-// .not_found {
-//   display: flex;
-//   flex-direction: column;
-// }
 
+///////////////////////////not-found///////////////////////////////
 .not_found-banner img {
-  // flex: 1 1 auto;
   height: auto;
   width: 100%;
-  // background-size: cover;
-  // background-position: center;
-  // background-repeat: no-repeat;
-  // background-image: url('../../src/images/err.png');
 }
 
 ////////////////////header//////////////////////////////
-
 .header {
+  position: relative;
   margin-bottom: 60px;
   text-align: center;
   height: 230px;
@@ -102,6 +77,9 @@ body.dark {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  & .container * {
+    z-index: 1;
+  }
   &__img-home {
     background-image: url('../../src/images/logo1.png');
   }
@@ -111,58 +89,54 @@ body.dark {
   &__img-details {
     background-image: url('../../src/images/logo3.png');
   }
-
+  &__overlay {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    background-color: color(backgroundBtnHover);
+  }
   &__content {
     @include center-space-between-flex($type: 'all');
-    // max-width: 882px;
     margin: 0 auto;
     padding-top: 10px;
     padding-bottom: 45px;
-
-    // padding-top: 50px;
-    // padding-bottom: 15px;
   }
-
   &__link {
     @include center-flex($type: 'ver');
     text-decoration: none;
   }
-
   &__logoImg {
     width: 24px;
     height: 24px;
     margin-right: 10px;
   }
-
   &__logoName {
     font-family: $primary-font-stack;
-    font-size: $headings-size-big;
+    font-size: 0;
+    letter-spacing: 0;
     font-style: normal;
     color: color(primary);
     font-weight: $medium-font-size;
-    text-transform: capitalize;
     padding-left: 10px;
   }
-
   &__navList {
     display: flex;
     list-style: none;
   }
-
   &__navListLink {
     text-decoration: none;
     font-family: $primary-font-stack;
     font-size: $headings-size;
-    color: #ffffff;
+    color: color(primary);
     font-weight: $medium-font-size;
     cursor: pointer;
     text-transform: uppercase;
   }
-
   &__navListLink:hover {
     border-bottom: 3px solid color(secondary);
   }
-
   &__navList > li:first-child {
     margin-right: 50px;
   }
@@ -172,23 +146,41 @@ body.dark {
   .header {
     margin-bottom: 20px;
   }
-
   .header__logoName {
     display: none;
   }
-
   .header__navList > li:first-child {
     margin-right: 15px;
   }
 }
+
+///////////////////waviy/////////////////////
+.waviy {
+  position: relative;
+  -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+}
+.waviy span {
+  position: relative;
+  display: inline-block;
+  font-size: 30px;
+  animation: waviy 1s 7;
+  animation-delay: calc(0.1s * var(--i));
+}
+@keyframes waviy {
+  0%,
+  40%,
+  100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-20px);
+  }
+}
+
 /////////////////language/////////////////////
 .header__language {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding-right: 20px;
-  // padding-bottom: 20px;
-  // padding-right: 40px;
+  @include center-flex-end-flex($type: 'all');
+  padding-right: 10px;
 }
 
 .header__languageBtn-ru,
@@ -208,6 +200,7 @@ body.dark {
   border-radius: 50%;
   background-size: cover;
 }
+/*
 .header__languageBtn-ru {
   background-image: url('http://ecoenergocom.com.ua/filmix/flag-ru.jpg');
 }
@@ -217,7 +210,7 @@ body.dark {
 .header__languageBtn-uk {
   background-image: url('http://ecoenergocom.com.ua/filmix/flag-uk.jpg');
 }
-
+*/
 .header__languageBtn-ru:hover {
   border: color(secondary) 2px solid;
 }
@@ -282,11 +275,9 @@ body.dark {
     @include center-flex($type: 'all');
     list-style: none;
   }
-
   &__navLibrary > li:first-child {
     margin-right: 15px;
   }
-
   &__navLibraryBtn-Watched,
   &__navLibraryBtn-Queue {
     border: none;
@@ -302,15 +293,14 @@ body.dark {
     border: color(primary) 1px solid;
     width: 136px;
     height: 44px;
+    border-radius: 5px;
   }
-
   &__navLibraryBtn-Queue:hover {
     background-color: color(secondary);
   }
   &__navLibraryBtn-Watched:hover {
     background-color: color(secondary);
   }
-
   &__libraryFilmList {
     width: 100%;
     list-style: none;
@@ -337,7 +327,6 @@ body.dark {
   .form-search input {
     width: 195px;
   }
-
   .search__libraryFilmList {
     margin-bottom: 0;
   }
