@@ -82,6 +82,30 @@
   }
 }
 
+@mixin center-flex-end-flex($type: 'all') {
+  display: flex;
+  @if $type== 'all' {
+    justify-content: flex-end;
+    align-items: center;
+  } @else if $type== 'hor' {
+    justify-content: flex-end;
+  } @else if $type== 'ver' {
+    align-items: center;
+  }
+}
+
+@mixin center-space-around-flex($type: 'all') {
+  display: flex;
+  @if $type== 'all' {
+    justify-content: space-around;
+    align-items: center;
+  } @else if $type== 'hor' {
+    justify-content: space-around;
+  } @else if $type== 'ver' {
+    align-items: center;
+  }
+}
+
 @mixin center-flex($type: 'all') {
   display: flex;
   @if $type== 'all' {
