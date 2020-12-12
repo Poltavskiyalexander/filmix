@@ -22,7 +22,7 @@ const init = async (params, query) => {
   // console.log(data);
 
   const trailer = await medb.getMovies(params.id);
-  console.log(trailer.results);
+  // console.log(trailer.results);
 
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', baseMarkup());
@@ -62,7 +62,6 @@ const init = async (params, query) => {
 export default init;
 
 const buttonClickHandler = event => {
-  // debugger;
   event.preventDefault();
   const ls = new storage();
 
@@ -74,7 +73,6 @@ const buttonClickHandler = event => {
     .getAttribute(ATTR_NAME);
 
   if (ls.checkDataInLocalStorage(buttonAttrValue, movieCardAttribute)) {
-    // debugger;
     ls.removeDataFromLocalStorage(buttonAttrValue, movieCardAttribute);
     buttonRef.classList.remove('active');
     if (buttonAttrValue === 'queueKey') {
@@ -83,8 +81,15 @@ const buttonClickHandler = event => {
       buttonRef.innerHTML = 'ADD TO WATCHED';
     }
   } else {
-    // проверяем, если есть такое же значение в другом ключе - удаляем class в старом и ставим в том, где нажали
     ls.addDataToLocalStorage(buttonAttrValue, movieCardAttribute);
+    // const buttonsParent = buttonRef.parentElement;
+    // // console.log(buttonsParent);
+    // const buttons = buttonsParent.querySelectorAll('.button-action');
+    // console.log(buttons);
+
+    // // buttons.classList.remove('.active');
+    // ls.removeDataFromLocalStorage(buttonAttrValue, movieCardAttribute);
+
     buttonRef.classList.add('active');
     if (buttonAttrValue === 'queueKey') {
       buttonRef.innerHTML = 'ADDED TO QUEUE';
@@ -92,8 +97,6 @@ const buttonClickHandler = event => {
       buttonRef.innerHTML = 'ADDED TO WATCHED';
     }
   }
-
-  // if (ls.checkDataInLocalStorage(buttonAttrValue, movieCardAttribute) && )
 };
 
 export const addEventHandlers = () => {
