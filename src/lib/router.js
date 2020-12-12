@@ -34,6 +34,7 @@ const initRouter = () => {
           addHomePageEventHandlers();
           //addLanguageEventHandlers();
           pag();
+          console.log('loading');
         });
       },
       '/:action': (params, query) => {
@@ -94,9 +95,8 @@ const initRouter = () => {
     })
     .resolve();
 };
+export default initRouter;
 
 export const navigate = path => {
   router.navigate(path);
 };
-
-export default initRouter;

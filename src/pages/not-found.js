@@ -1,7 +1,5 @@
 import baseMarkup from '../components/basemarkup';
-import templateHeader from '../templates/header.hbs';
 import templateNotFound from '../templates/not_found.hbs';
-import templateFooter from '../templates/footer.hbs';
 
 const init = async () => {
   const duffElem = document.createElement('div');

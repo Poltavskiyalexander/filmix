@@ -1,11 +1,11 @@
 import medb from '../lib/ApiMEDB';
-import baseMarkup from '../components/basemarkup';
-import movieTemplate from '../templates/movie__card.hbs';
-import trailerTemplate from '../templates/trailer__card.hbs';
-import { navigate } from '../lib/Router';
 import localStorage from '../lib/storage';
 import storage from '../lib/storage';
-import { doc } from 'prettier';
+
+import baseMarkup from '../components/basemarkup';
+
+import movieTemplate from '../templates/movie__card.hbs';
+import trailerTemplate from '../templates/trailer__card.hbs';
 
 const ATTR_NAME = 'data-filmID';
 const ATTR_LS_KEY = 'data-lsKeys';
@@ -112,12 +112,6 @@ export const addEventHandlers = () => {
     .querySelector('.action__watched')
     .addEventListener('click', buttonClickHandler);
 
-  document
-    .querySelector('.action__queue')
-    .addEventListener('click', buttonClickHandler);
-  document
-    .querySelector('.action__queue')
-    .addEventListener('click', buttonClickHandler);
   document
     .querySelector('.action__queue')
     .addEventListener('click', buttonClickHandler);

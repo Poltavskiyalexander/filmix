@@ -1,11 +1,9 @@
 import medb from '../lib/ApiMEDB';
+import Build from '../lib/Data-builder';
+
+import { addEventHandlersAllPages } from '../components/EventHandlers';
 import baseMarkup from '../components/basemarkup';
 import sliderMarkup from '../components/slider';
-import { navigate } from '../lib/Router';
-import Build from '../lib/Data-builder';
-import { paginationDekstop, paginationMobile } from '../components/pagination';
-import sliderMurkup from '../templates/section_slider.hbs';
-import localStorage from '../lib/storage';
 
 const init = async (params, query) => {
   //console.log(`params: ${params}`);
@@ -43,49 +41,6 @@ const init = async (params, query) => {
 };
 export default init;
 
-const submitHandler = async event => {
-  event.preventDefault();
-  const searchQuery = event.target.querySelector('input[name="text"]').value;
-  const textError = document.querySelector('.search__libraryFilmList');
-
-  if (searchQuery !== '') {
-    const data = await medb.getFilmsQuery(searchQuery);
-    console.log(data);
-    const { total_results } = data;
-    if (total_results === 0) {
-      textError.classList.remove('headen');
-      console.log(
-        'Search result not successful. Enter the correct movie name and',
-      );
-    } else {
-      navigate('/search?request=' + searchQuery);
-    }
-    // console.log(searchQuery);
-  }
-};
-
-const hideErrorHandler = event => {
-  event.preventDefault();
-  const textError = document.querySelector('.search__libraryFilmList');
-  textError.classList.add('headen');
-};
-
 export const addEventHandlers = () => {
-  document
-    .querySelector('.form-search')
-    .addEventListener('submit', submitHandler);
-
-  document
-    .querySelector('input[name="text"]')
-    .addEventListener('click', hideErrorHandler);
-  const ls = new localStorage();
-
-  document.querySelectorAll('.header__language button').forEach(btn => {
-    btn.addEventListener('click', event => {
-      event.preventDefault();
-      ls.set('language', btn.dataset.language);
-      console.log(ls.get('language'));
-      window.location.reload();
-    });
-  });
+  addEventHandlersAllPages();
 };

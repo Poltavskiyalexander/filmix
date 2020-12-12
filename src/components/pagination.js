@@ -4,8 +4,13 @@ import paginationList from '../templates/navigation_list.hbs';
 const MEDIA_Medium = 768;
 const MEDIA_MediumQuery = `(max-width: ${MEDIA_Medium - 1}px)`;
 
-const paginationInit = (obj, url) => {
+const init = (obj, url) => {
   const { page, total_pages: totalPages } = obj;
+
+  if (totalPages <= 1) {
+    return '';
+  }
+
   const buffElem = document.createElement('div');
 
   buffElem.insertAdjacentHTML('beforeend', templateSectionPagination());
@@ -15,9 +20,6 @@ const paginationInit = (obj, url) => {
   let rightArrow = buffElem.querySelector('.numpage__right-arrow');
   let leftArrow = buffElem.querySelector('.numpage__left-arrow');
 
-  if (totalPages <= 1) {
-    parentList.remove();
-  }
   if (page === totalPages) {
     rightArrow.remove();
   } else {
@@ -98,7 +100,7 @@ const paginationInit = (obj, url) => {
   return buffElem.innerHTML;
 };
 
-export default paginationInit;
+export default init;
 
 export const addEventHandlers = () => {
   const mediaQuery = window.matchMedia(MEDIA_MediumQuery);
@@ -106,7 +108,7 @@ export const addEventHandlers = () => {
     paginationRef = document.querySelector('.pagination');
     pageRef = paginationRef.querySelector('.item__border-active');
     if (pageRef) {
-      paginationRef.querySelector('numpage__lists').innerHTML = paginationInit({
+      paginationRef.querySelector('numpage__lists').innerHTML = init({
         page: pageRef.textContent,
         total_pages: pageRef.dataset.totalPages,
       });

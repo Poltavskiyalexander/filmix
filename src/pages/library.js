@@ -1,7 +1,7 @@
 import medb from '../lib/ApiMEDB';
 import baseMarkup from '../components/basemarkup';
-import { navigate } from '../lib/Router';
 import Build from '../lib/Data-builder';
+import { addEventHandlersAllPages } from '../components/EventHandlers';
 
 const parseQuery = query => {
   const queryArr = query.split('&');
@@ -43,4 +43,6 @@ const init = async (params, query) => {
 };
 export default init;
 
-export const addEventHandlers = () => {};
+export const addEventHandlers = () => {
+  addEventHandlersAllPages();
+};
