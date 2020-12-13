@@ -17,6 +17,13 @@ const init = (data = null, url = '#') => {
     mainRef.insertAdjacentHTML('beforeend', pagination(data, url));
   }
   duffElem.insertAdjacentHTML('beforeend', templateFooter());
+
+  const progressDone = duffElem.querySelectorAll('.progress-done');
+
+  progressDone.forEach(progress => {
+    progress.style.width = progress.getAttribute('data-done') + '%';
+  });
+
   return duffElem.innerHTML;
 };
 export default init;
