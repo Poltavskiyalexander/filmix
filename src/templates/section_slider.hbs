@@ -1,5 +1,9 @@
 <section class="slider">
+    <div class="container">
+        <div class="slider__premera"><span>Скоро в кино</span></div>
+    </div>
     <div class="slider_container">
+
         <div class="slider_body">
 
             <div class="slider__btn"><a class=" slider-arrow slider_arrow-left" href="#"><svg class="arrow-left"
@@ -14,12 +18,11 @@
                 <div class="slider__lists">
                     {{#each this}}
                     <div class="slider_item">
-                        <a href="#">
+                        <a href="/movie/{{id}}">
                             <img class="item "
                                 src="https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/{{backdrop_path}}" alt="">
-                            {{!-- <p class="slider_name">vehverebvebv</p> --}}
-
-                            {{!-- <p class="slider_name_date">21.12.2021</p> --}}
+                            <p class="slider_name">{{title}}</p>
+                            <p class="slider_name_date">{{release_date}}</p>
                         </a>
 
                     </div>

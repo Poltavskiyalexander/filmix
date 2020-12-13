@@ -72,3 +72,23 @@
     margin-bottom: 10px;
   }
 }
+.dark-theme {
+  .footer {
+    background: #242934;
+    &__main {
+      color: #fff;
+    }
+    &__link {
+      color: #fff;
+    }
+    &__networks-name {
+      color: #fff;
+    }
+  }
+  .numpage__list-item {
+    color: #fff;
+  }
+  .item__border-active {
+    color: black;
+  }
+}
