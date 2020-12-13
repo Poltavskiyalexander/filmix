@@ -105,8 +105,8 @@ export default init;
 export const addEventHandlers = () => {
   const mediaQuery = window.matchMedia(MEDIA_MediumQuery);
   mediaQuery.addListener(event => {
-    paginationRef = document.querySelector('.pagination');
-    pageRef = paginationRef.querySelector('.item__border-active');
+    const paginationRef = document.querySelector('.pagination');
+    const pageRef = paginationRef.querySelector('.item__border-active');
     if (pageRef) {
       paginationRef.querySelector('numpage__lists').innerHTML = init({
         page: pageRef.textContent,

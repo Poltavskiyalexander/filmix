@@ -41,17 +41,8 @@ const init = async (params, query) => {
   // let key = KEY_QUEUE;
   const ls = new storage();
   const data = await medb.getFilmsArrId(ls.get(key), qweryObj.page);
-  // console.log('data333');
-  // console.log(data333);
-
-  // console.log('data333');
-
-  // const data = await medb.getFilmsQuery(qweryObj.request, qweryObj.page);
   const { genres: genresArr } = await medb.getGenresList(data);
   const results = Build(data, genresArr);
-  // console.log('data333');
-  console.log(results);
-  // console.log('data333');
 
   const duffElem = document.createElement('div');
   duffElem.insertAdjacentHTML('beforeend', baseMarkup(data, url));

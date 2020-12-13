@@ -24,7 +24,7 @@ const hash = '#';
 const router = new Navigo(root, useHash);
 
 const initRouter = () => {
-  debugger;
+  //debugger;
   router
     .on({
       '/': () => {
@@ -32,9 +32,6 @@ const initRouter = () => {
         navigate('/');
         RenderComponent(initHomePage).then(() => {
           addHomePageEventHandlers();
-          //addLanguageEventHandlers();
-          //pag();
-          console.log('loading');
         });
       },
       '/:action': (params, query) => {
@@ -42,15 +39,11 @@ const initRouter = () => {
         if (params.action === 'home') {
           RenderComponent(initHomePage, params, query).then(() => {
             addHomePageEventHandlers();
-            // pag();
           });
-          return;
-        }
-        if (params.action === 'search') {
+        } else if (params.action === 'search') {
           RenderComponent(initSearchPage, params, query).then(() => {
             addSearchPageEventHandlers();
           });
-          return;
         } else {
           RenderComponent(initNotFound).then(() => {
             addNotFoundPageEventHandlers();
@@ -58,7 +51,7 @@ const initRouter = () => {
         }
       },
       '/movie/:id': (params, query) => {
-        debugger;
+        //debugger;
         RenderComponent(initMoviePage, params, query).then(() => {
           addMoviePageEventHandlers();
         });
@@ -77,10 +70,9 @@ const initRouter = () => {
       },
     })
     .notFound(() => {
-      debugger;
+      //debugger;
       RenderComponent(initNotFound).then(() => {
         addNotFoundPageEventHandlers();
-        //addLanguageEventHandlers();
       });
     })
     .resolve();
@@ -88,6 +80,6 @@ const initRouter = () => {
 export default initRouter;
 
 export const navigate = path => {
-  debugger;
+  //debugger;
   router.navigate(path);
 };
