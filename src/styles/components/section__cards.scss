@@ -33,6 +33,7 @@
       &__img-film {
         width: 100%;
         height: auto;
+        border-radius: 5px;
       }
       &__film-name {
         color: color(primary-text);
@@ -53,6 +54,7 @@
 .card__overlay:hover .card__overlay-text {
   visibility: visible;
 }
+
 .card__overlay:hover img {
   transition: all 0.3s linear;
   -webkit-transform: scale(1.1);
@@ -68,7 +70,7 @@
   bottom: 0;
   left: 0;
   line-height: 2.3;
-  background-color: rgba(36, 36, 36, 0.609);
+  background-color: color(backgroundBtnHover);
   transition: all 0.3s linear;
   border-radius: 5px;
   border: 2px solid color(secondary);
@@ -95,13 +97,9 @@
   border-top-right-radius: 25px;
 }
 
-// .card__popularity {
-//   bottom: -292px;
-// }
-
 .reviews-container {
   border-radius: 5px;
-  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 10px -5px color(backgroundBtnHover);
   padding: 5px;
   width: 90%;
   margin: 0 auto;
@@ -121,8 +119,8 @@
 }
 
 .review:hover {
-  border: 1px solid #ddd;
-  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 0.7);
+  border: 1px solid color(secondary);
+  box-shadow: 0 3px 10px -5px color(backgroundBtnHover);
 }
 
 .progress {
@@ -135,8 +133,8 @@
 }
 
 .progress-done {
-  background: linear-gradient(to left, rgb(242, 112, 156), rgb(255, 148, 114));
-  box-shadow: 0 3px 3px -5px rgb(242, 112, 156), 0 2px 5px rgb(242, 112, 156);
+  background: linear-gradient(to left, color(warning-text), color(secondary));
+  box-shadow: 0 3px 3px -5px color(secondary), 0 2px 5px color(secondary);
   border-radius: 5px;
   height: 10px;
   width: 0;
@@ -145,4 +143,15 @@
 
 .percent {
   color: color(primary);
+}
+
+.icon-container:before {
+  content: '★';
+}
+.dark-theme {
+  .card__film {
+    .card__film-name {
+      color: color(primary);
+    }
+  }
 }
