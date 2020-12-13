@@ -1,7 +1,6 @@
 .choosed_movie {
   position: relative;
-  margin-bottom: 60px;
-  background-repeat: none;
+  margin-bottom: 50px;
   background-size: cover;
   z-index: 1;
 }
@@ -26,6 +25,10 @@
   top: 0;
   left: 0;
   z-index: -1;
+}
+
+.trailers {
+  margin-bottom: 50px;
 }
 
 .trailer {
@@ -93,15 +96,18 @@ iframe {
   display: inline-block;
   text-align: center;
   line-height: 14px;
-  width: 36px;
+  padding: 0 7px;
   border-radius: 5px;
   background-color: color(secondary);
-  color: #ffffff;
+  color: color(primary);
 }
 
 .votes {
   width: 36px;
   height: 16px;
+  padding: 0 7px;
+  color: color(primary-text);
+  background-color: color(background-color-footer);
   border-radius: 5px;
 }
 

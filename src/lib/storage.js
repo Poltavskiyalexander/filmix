@@ -53,7 +53,7 @@ export default class storage {
     const allValues = this.get(key);
 
     const indexOfChosenData = allValues.indexOf(dataToRemove);
-    console.log(indexOfChosenData);
+    // console.log(indexOfChosenData);
 
     const newArr = allValues.splice(indexOfChosenData, 1);
     this.set(key, allValues);

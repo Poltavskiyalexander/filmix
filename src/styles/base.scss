@@ -8,11 +8,36 @@ body {
   font-family: 'Roboto';
   color: #000000;
   &.dark-theme {
-    background-color: #333333;
+    background-image: linear-gradient(
+      to right top,
+      #121212,
+      #1d1d23,
+      #242934,
+      #273747,
+      #274559,
+      #2c4a5e,
+      #304e62,
+      #355367,
+      #3e4e5f,
+      #444955,
+      #45464c,
+      #434343
+    );
     color: #fff;
   }
   &.light-theme {
-    background-color: #fff;
+    background: #abbaab; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+      to right,
+      #ffffff,
+      #abbaab
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+      to right,
+      #ffffff,
+      #abbaab
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     color: #333333;
   }
 }
