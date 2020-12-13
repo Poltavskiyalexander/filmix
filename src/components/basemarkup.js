@@ -18,7 +18,7 @@ const init = (data = null, url = '#') => {
   }
   duffElem.insertAdjacentHTML('beforeend', templateFooter());
 
-  const maximal = 3000;
+  const maximal = 2500;
 
   const review = duffElem.querySelectorAll('.review');
   console.log(review);
