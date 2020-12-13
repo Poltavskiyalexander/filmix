@@ -18,7 +18,12 @@ export default class storage {
   }
 
   get(key) {
+    console.log(key);
+    // if (this.has(key)) {
     return JSON.parse(localStorage.getItem(key));
+    // } else {
+    //   return '';
+    // }
   }
 
   clear() {
