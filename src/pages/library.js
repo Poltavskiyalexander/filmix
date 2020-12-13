@@ -1,7 +1,12 @@
 import medb from '../lib/ApiMEDB';
-import baseMarkup from '../components/basemarkup';
+import storage from '../lib/storage';
 import Build from '../lib/Data-builder';
+
+import baseMarkup from '../components/basemarkup';
 import { addEventHandlersAllPages } from '../components/EventHandlers';
+
+const KEY_WATCHED = 'watchedKey';
+const KEY_QUEUE = 'queueKey';
 
 const parseQuery = query => {
   const queryArr = query.split('&');
@@ -21,21 +26,35 @@ const init = async (params, query) => {
   //console.log(`query: ${query}`);
   //debugger;
   const qweryObj = parseQuery(`${query}`);
-  let url;
+  let url, key;
   if (params.action === 'queu') {
     url = `/library/queu?`;
-    qweryObj.request = 'war';
+    key = KEY_QUEUE;
   } else {
-    qweryObj.request = 'gerl';
     url = `/library/watched?`;
+    key = KEY_WATCHED;
   }
 
-  const data = await medb.getFilmsQuery(qweryObj.request, qweryObj.page);
+  //const qweryObj = parseQuery(`${query}`); //${params.action}=
+  //const data = await medb.getFilmsQuery(qweryObj.request, qweryObj.page);
+
+  // let key = KEY_QUEUE;
+  const ls = new storage();
+  const data = await medb.getFilmsArrId(ls.get(key), qweryObj.page);
+  // console.log('data333');
+  // console.log(data333);
+
+  // console.log('data333');
+
+  // const data = await medb.getFilmsQuery(qweryObj.request, qweryObj.page);
   const { genres: genresArr } = await medb.getGenresList(data);
   const results = Build(data, genresArr);
+  // console.log('data333');
+  console.log(results);
+  // console.log('data333');
 
   const duffElem = document.createElement('div');
-  duffElem.insertAdjacentHTML('beforeend', baseMarkup(results, url));
+  duffElem.insertAdjacentHTML('beforeend', baseMarkup(data, url));
   duffElem.querySelector('.form-search-library').remove();
   duffElem.querySelector('header').classList.add('header__img-watched');
 

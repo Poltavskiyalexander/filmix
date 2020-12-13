@@ -28,7 +28,7 @@ export default {
     if (ls.has('language')) {
       language = ls.get('language');
     }
-    const getFilmsApi = this.getFilmsId(id); //.then(data)
+    const getFilmsApi = this.getFilmsId(id);
     debugger;
     return arr.map(id => {
       getFilmsApi;
@@ -88,5 +88,30 @@ export default {
     const queryString = `${BASE_URL}/3/discover/movie?api_key=${API_KEY}&primary_release_date.gte=${dateString}&sort_by=popularity.desc&language=${language}`;
     console.log(queryString); //для проверки себя
     return loadData(queryString);
+  },
+  getFilmsArrId(arrID, page = 1, language = LANGUAGE) {
+    const resArr = [];
+    let startElement = page * 20 - 20;
+    if (arrID.length < startElement + 1) {
+      page = 1;
+      startElement = 0;
+    }
+    const currentIdArr = arrID.slice(startElement, startElement + 20);
+
+    const dataByID = async id => {
+      const data = await this.getFilmsId(id);
+      resArr.push(data);
+    };
+    currentIdArr.forEach(element => {
+      dataByID(element);
+    });
+    const resObj = {
+      page: 1,
+      results: resArr,
+      total_pages: Math.trunc(arrID.length / 20) + 1,
+      total_results: arrID.length,
+    };
+
+    return resObj;
   },
 };
