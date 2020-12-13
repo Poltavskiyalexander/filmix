@@ -103,14 +103,19 @@ const init = (obj, url) => {
 export default init;
 
 export const addEventHandlers = () => {
-  const mediaQuery = window.matchMedia(MEDIA_MediumQuery);
+  // debugger;
+  // const queryParams = new URLSearchParams(window.location.pathname);
+  // const mediaQuery = window.matchMedia(MEDIA_MediumQuery);
+  // debugger;
+  //const dd = queryParams.get('page');
   mediaQuery.addListener(event => {
-    const paginationRef = document.querySelector('.pagination');
+    const paginationRef = document.querySelector('#pagination');
     const pageRef = paginationRef.querySelector('.item__border-active');
     if (pageRef) {
-      paginationRef.querySelector('numpage__lists').innerHTML = init({
-        page: pageRef.textContent,
-        total_pages: pageRef.dataset.totalPages,
+      console.log(pageRef, 'home');
+      paginationRef.outerHTML = init({
+        page: +pageRef.textContent,
+        total_pages: +pageRef.dataset.total,
       });
     }
   });
