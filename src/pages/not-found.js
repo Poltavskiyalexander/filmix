@@ -4,6 +4,7 @@ import { addEventHandlersAllPages } from '../components/EventHandlers';
 import templateNotFound from '../templates/not_found.hbs';
 
 const init = async () => {
+  debugger;
   const duffElem = document.createElement('div');
 
   duffElem.insertAdjacentHTML('beforeend', baseMarkup());
