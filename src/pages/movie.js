@@ -82,15 +82,20 @@ const buttonClickHandler = event => {
     }
   } else {
     ls.addDataToLocalStorage(buttonAttrValue, movieCardAttribute);
-    // const buttonsParent = buttonRef.parentElement;
-    // // console.log(buttonsParent);
-    // const buttons = buttonsParent.querySelectorAll('.button-action');
-    // console.log(buttons);
+    const buttonsParent = buttonRef.parentElement;
+    const buttons = buttonsParent.querySelectorAll('.button-action');
 
-    // // buttons.classList.remove('.active');
-    // ls.removeDataFromLocalStorage(buttonAttrValue, movieCardAttribute);
+    buttons.forEach(button => {
+      button.classList.remove('active');
+      buttonRef.classList.add('active');
+      if (buttonAttrValue !== button.getAttribute('data-lskeys')) {
+        ls.removeDataFromLocalStorage(
+          button.getAttribute('data-lskeys'),
+          movieCardAttribute,
+        );
+      }
+    });
 
-    buttonRef.classList.add('active');
     if (buttonAttrValue === 'queueKey') {
       buttonRef.innerHTML = 'ADDED TO QUEUE';
     } else {

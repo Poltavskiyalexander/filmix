@@ -1,6 +1,6 @@
 import Navigo from 'navigo';
 import RenderComponent from './Component';
-import { addEventHandlers as pag } from '../components/pagination';
+// import { addEventHandlers as pag } from '../components/pagination';
 
 import initHomePage, {
   addEventHandlers as addHomePageEventHandlers,
@@ -24,7 +24,7 @@ const hash = '#';
 const router = new Navigo(root, useHash);
 
 const initRouter = () => {
-  // debugger;
+  debugger;
   router
     .on({
       '/': () => {
@@ -33,7 +33,7 @@ const initRouter = () => {
         RenderComponent(initHomePage).then(() => {
           addHomePageEventHandlers();
           //addLanguageEventHandlers();
-          pag();
+          //pag();
           console.log('loading');
         });
       },
@@ -42,33 +42,25 @@ const initRouter = () => {
         if (params.action === 'home') {
           RenderComponent(initHomePage, params, query).then(() => {
             addHomePageEventHandlers();
-            //addLanguageEventHandlers();
-            pag();
+            // pag();
           });
           return;
         }
         if (params.action === 'search') {
           RenderComponent(initSearchPage, params, query).then(() => {
             addSearchPageEventHandlers();
-            //addLanguageEventHandlers();
           });
           return;
+        } else {
+          RenderComponent(initNotFound).then(() => {
+            addNotFoundPageEventHandlers();
+          });
         }
-        RenderComponent(initNotFound).then(() => {
-          addNotFoundPageEventHandlers();
-          //addLanguageEventHandlers();
-        });
       },
       '/movie/:id': (params, query) => {
-        // debugger;
+        debugger;
         RenderComponent(initMoviePage, params, query).then(() => {
           addMoviePageEventHandlers();
-          //addLanguageEventHandlers();
-          return;
-        });
-        RenderComponent(initNotFound).then(() => {
-          //addLanguageEventHandlers();
-          addNotFoundPageEventHandlers();
         });
       },
       '/library/:action': (params, query) => {
@@ -76,18 +68,16 @@ const initRouter = () => {
         if (params.action === 'queu' || params.action === 'watched') {
           RenderComponent(initLibrary, params, query).then(() => {
             addLibraryPageEventHandlers();
-            //addLanguageEventHandlers();
           });
-          return;
+        } else {
+          RenderComponent(initNotFound).then(() => {
+            addNotFoundPageEventHandlers();
+          });
         }
-        RenderComponent(initNotFound).then(() => {
-          addNotFoundPageEventHandlers();
-          //addLanguageEventHandlers();
-        });
       },
     })
     .notFound(() => {
-      // debugger;
+      debugger;
       RenderComponent(initNotFound).then(() => {
         addNotFoundPageEventHandlers();
         //addLanguageEventHandlers();
@@ -98,5 +88,6 @@ const initRouter = () => {
 export default initRouter;
 
 export const navigate = path => {
+  debugger;
   router.navigate(path);
 };
