@@ -18,10 +18,23 @@ const init = (data = null, url = '#') => {
   }
   duffElem.insertAdjacentHTML('beforeend', templateFooter());
 
-  const progressDone = duffElem.querySelectorAll('.progress-done');
+  const maximal = 3000;
 
-  progressDone.forEach(progress => {
-    progress.style.width = progress.getAttribute('data-done') + '%';
+  const review = duffElem.querySelectorAll('.review');
+  console.log(review);
+
+  review.forEach(elem => {
+    const popularity = elem.querySelector('.icon-container');
+    let percent = Math.trunc(
+      (parseInt(popularity.textContent) * 100) / maximal,
+    );
+    popularity.textContent = Math.trunc(percent / 10);
+    const progressElem = elem.querySelector('.progress-done');
+    progressElem.dataset.done = percent + '★';
+    progressElem.style.width = percent + '%';
+    elem.querySelector('.percent').textContent = percent + '%';
+
+    // console.log(percent);
   });
 
   return duffElem.innerHTML;

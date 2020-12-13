@@ -95,10 +95,6 @@
   border-top-right-radius: 25px;
 }
 
-// .card__popularity {
-//   bottom: -292px;
-// }
-
 .reviews-container {
   border-radius: 5px;
   box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 0.3);
@@ -145,4 +141,8 @@
 
 .percent {
   color: color(primary);
+}
+
+.icon-container:before {
+  content: '★';
 }
