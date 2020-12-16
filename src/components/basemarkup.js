@@ -21,7 +21,6 @@ const init = (data = null, url = '#') => {
   const maximal = 2500;
 
   const review = duffElem.querySelectorAll('.review');
-  console.log(review);
 
   review.forEach(elem => {
     const popularity = elem.querySelector('.icon-container');

@@ -1,6 +1,5 @@
 import Navigo from 'navigo';
 import RenderComponent from './Component';
-// import { addEventHandlers as pag } from '../components/pagination';
 
 import initHomePage, {
   addEventHandlers as addHomePageEventHandlers,
@@ -24,18 +23,16 @@ const hash = '#';
 const router = new Navigo(root, useHash);
 
 const initRouter = () => {
-  //debugger;
+  // debugger;
   router
     .on({
       '/': () => {
-        // debugger;
         navigate('/');
         RenderComponent(initHomePage).then(() => {
           addHomePageEventHandlers();
         });
       },
       '/:action': (params, query) => {
-        //debugger;
         if (params.action === 'home') {
           RenderComponent(initHomePage, params, query).then(() => {
             addHomePageEventHandlers();
@@ -51,13 +48,11 @@ const initRouter = () => {
         }
       },
       '/movie/:id': (params, query) => {
-        //debugger;
         RenderComponent(initMoviePage, params, query).then(() => {
           addMoviePageEventHandlers();
         });
       },
       '/library/:action': (params, query) => {
-        // debugger;
         if (params.action === 'queu' || params.action === 'watched') {
           RenderComponent(initLibrary, params, query).then(() => {
             addLibraryPageEventHandlers();
@@ -70,7 +65,6 @@ const initRouter = () => {
       },
     })
     .notFound(() => {
-      //debugger;
       RenderComponent(initNotFound).then(() => {
         addNotFoundPageEventHandlers();
       });
@@ -80,6 +74,5 @@ const initRouter = () => {
 export default initRouter;
 
 export const navigate = path => {
-  //debugger;
   router.navigate(path);
 };

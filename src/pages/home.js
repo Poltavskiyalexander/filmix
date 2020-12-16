@@ -20,7 +20,7 @@ const init = async (params, query) => {
   const { genres: genresArr } = await medb.getGenresList(data);
   const results = Build(data, genresArr);
 
-  const sliderData = await medb.getCinemaFilms(data);
+  const sliderData = await medb.getCinemaFilms();
   const sliderResults = Build(sliderData, genresArr).results;
 
   //const

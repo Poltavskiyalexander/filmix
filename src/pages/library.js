@@ -28,7 +28,7 @@ const init = async (params, query) => {
   const qweryObj = parseQuery(`${query}`);
   let url, key;
   if (params.action === 'queu') {
-    url = `/library/queu?`;
+    url = `library/queu?`;
     key = KEY_QUEUE;
   } else {
     url = `/library/watched?`;

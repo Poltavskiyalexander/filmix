@@ -81,15 +81,16 @@ export default {
       60 /*seconds*/ *
       1000; /*millis*/
     const twoWeeksAgoDate = new Date(Date.now() - twoWeeksInMilliseconds);
-    //date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getUTCDate()
-    const dateString = `${twoWeeksAgoDate.getFullYear()}-${
-      twoWeeksAgoDate.getMonth() + 1
-    }-${twoWeeksAgoDate.getUTCDate()}`;
+    const curr_date = String(twoWeeksAgoDate.getDate()).padStart(2, '0');
+    const curr_month = String(twoWeeksAgoDate.getMonth() + 1).padStart(2, '0');
+    const curr_year = twoWeeksAgoDate.getFullYear();
+
+    const dateString = `${curr_year}-${curr_month}-${curr_date}`;
     const queryString = `${BASE_URL}/3/discover/movie?api_key=${API_KEY}&primary_release_date.gte=${dateString}&sort_by=popularity.desc&language=${language}`;
-    console.log(queryString); //для проверки себя
     return loadData(queryString);
   },
   getFilmsArrId(arrID, page = 1, language = LANGUAGE) {
+    page = Number(page);
     const resArr = [];
     let startElement = page * 20 - 20;
     if (arrID.length < startElement + 1) {
@@ -106,7 +107,7 @@ export default {
       dataByID(element);
     });
     const resObj = {
-      page: 1,
+      page,
       results: resArr,
       total_pages: Math.trunc(arrID.length / 20) + 1,
       total_results: arrID.length,

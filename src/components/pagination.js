@@ -104,19 +104,23 @@ export default init;
 
 export const addEventHandlers = () => {
   // debugger;
-  // const queryParams = new URLSearchParams(window.location.pathname);
-  // const mediaQuery = window.matchMedia(MEDIA_MediumQuery);
-  // debugger;
+  //const queryParams = new URLSearchParams(window.location.pathname);
   //const dd = queryParams.get('page');
+  const mediaQuery = window.matchMedia(MEDIA_MediumQuery);
+
+  const urlPart = window.location.hash.split('?')[0];
+
   mediaQuery.addListener(event => {
     const paginationRef = document.querySelector('#pagination');
     const pageRef = paginationRef.querySelector('.item__border-active');
     if (pageRef) {
-      console.log(pageRef, 'home');
-      paginationRef.outerHTML = init({
-        page: +pageRef.textContent,
-        total_pages: +pageRef.dataset.total,
-      });
+      paginationRef.outerHTML = init(
+        {
+          page: +pageRef.textContent,
+          total_pages: +pageRef.dataset.total,
+        },
+        urlPart + '?',
+      );
     }
   });
 

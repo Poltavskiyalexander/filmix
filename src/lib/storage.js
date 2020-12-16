@@ -1,5 +1,3 @@
-// import { all } from 'core-js/fn/promise';
-
 export default class storage {
   constructor(storage = true) {
     this._storage = storage;
@@ -18,12 +16,7 @@ export default class storage {
   }
 
   get(key) {
-    console.log(key);
-    // if (this.has(key)) {
     return JSON.parse(localStorage.getItem(key));
-    // } else {
-    //   return '';
-    // }
   }
 
   clear() {
@@ -56,12 +49,8 @@ export default class storage {
 
   removeDataFromLocalStorage(key, dataToRemove) {
     const allValues = this.get(key);
-
     const indexOfChosenData = allValues.indexOf(dataToRemove);
-    // console.log(indexOfChosenData);
-
     const newArr = allValues.splice(indexOfChosenData, 1);
     this.set(key, allValues);
-    console.log(allValues);
   }
 }
